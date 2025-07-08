@@ -180,7 +180,6 @@
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
         <script>
- 
         const myCountJs = document.getElementById('myCount');
         const myTotalJs = document.getElementById('myTotal');
 
@@ -241,13 +240,7 @@
 
 
     function add() {
-     let mydata = [];
-     
-    //  const cart =  [
-    //            { item_no: "aa05", item_name:"test05", price: 30,qty:1 },
-    //            { item_no: "aa06", item_name:"test06", price: 30,qty:1 }    
-    //            ];
-     
+        let mydata = [];
 
         $("tr").each(function() {
             const item_no = $(this).find("td").eq(0).text().trim();
@@ -270,42 +263,20 @@
             alert("請選擇至少一項商品");
             return;
         }
+        //$_POST=mydata[0];
+        $_POST=mydata.serializeArray();
+        console.log("mydata:",mydata);
+        console.log("$_POST:",$_POST);     
+        $.post("./api/insert_shopping.php", $_POST, function(res){
+            console.log(res);
+            if (res.success) {
+                alert("新增成功");
+                //location.href = "index.html"; // 返回主頁
+            } else {
+                alert("新增失敗：" + res.message);
+            }
+    }); 
 
-
-        
-    //     $_POST=mydata[0];        
-    //     console.log("mydata:",mydata);
-    //     console.log("$_POST:",$_POST);     
-    //     $.post("./api/insert_shopping.php", $_POST, function(res){
-    //         console.log(res);
-    //         if (res.success) {
-    //             alert("新增成功");
-    //             //location.href = "index.html"; // 返回主頁
-    //         } else {
-    //             alert("新增失敗：" + res.message);
-    //         }
-    // }); 
-
-   const customer_name = 'test';
-
-   fetch('./api/insert_order.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            customer_name: customer_name,
-            //cart: cart
-            mydata: mydata
-        })
-    })
-    .then(res => res.json())
-    .then(data => {
-        alert(data.message);
-    })
-    .catch(err => {
-        //console.error('錯誤:', err);
-    });
         
 
     }
