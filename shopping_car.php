@@ -124,9 +124,11 @@
 <body>
     <main>
         <div class="container">
-            <h3>購物車</h3>
+            <h3>購物車</h3>            
             <form action="" method="post">
+                姓名：<input type="text" name="customer_name" id="customer_name"><br>
             <table>
+                
                 <tr>
                     <th width="5%">品號</th>
                     <th width="5%">品名</th>
@@ -136,7 +138,7 @@
                     <th>金額</th>
                 </tr>
 
-                <?php          
+                <?php                                    
                  $table='items';
                  $rows=${ucfirst($table)}->all();         
                  foreach ($rows as $row): 
@@ -241,13 +243,7 @@
 
 
     function add() {
-     let mydata = [];
-     
-    //  const cart =  [
-    //            { item_no: "aa05", item_name:"test05", price: 30,qty:1 },
-    //            { item_no: "aa06", item_name:"test06", price: 30,qty:1 }    
-    //            ];
-     
+     let mydata = [];     
 
         $("tr").each(function() {
             const item_no = $(this).find("td").eq(0).text().trim();
@@ -269,25 +265,12 @@
         if (mydata.length === 0) {
             alert("請選擇至少一項商品");
             return;
-        }
+        }      
+  
 
-
-        
-    //     $_POST=mydata[0];        
-    //     console.log("mydata:",mydata);
-    //     console.log("$_POST:",$_POST);     
-    //     $.post("./api/insert_shopping.php", $_POST, function(res){
-    //         console.log(res);
-    //         if (res.success) {
-    //             alert("新增成功");
-    //             //location.href = "index.html"; // 返回主頁
-    //         } else {
-    //             alert("新增失敗：" + res.message);
-    //         }
-    // }); 
-
-   const customer_name = 'test';
-
+   //const customer_name = 'test';   
+   const customer_name = document.getElementById('customer_name').value;
+   console.log(customer_name);
    fetch('./api/insert_order.php', {
         method: 'POST',
         headers: {
@@ -300,13 +283,13 @@
         })
     })
     .then(res => res.json())
-    .then(data => {
-        alert(data.message);
+    .then(data => {        
+        alert(data.message);        
     })
     .catch(err => {
+        //alert(data.message);
         //console.error('錯誤:', err);
-    });
-        
+    });        
 
     }
 

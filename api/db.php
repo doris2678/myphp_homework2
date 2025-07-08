@@ -143,4 +143,6 @@ $Bottom=new DB('bottom');
 //dd($admin->save($array));
 //$array=['id'=>3,'acc'=>'ll','pw'=>'1234'];
 //dd($admin->save($array));
+//$array2=['item_no'=>'aa','item_name'=>'bb','price'=>1,'qty'=>2];
+//dd($Order2->save($array2));
 ?>
