@@ -5,7 +5,7 @@ $pdo = new PDO($dsn,'root','');
 
 // 取得 JSON 資料
 $data = json_decode(file_get_contents("php://input"), true);
-print_r($data);
+
 $customer_name = $data['customer_name'];
 $cart = $data['cart'];
 

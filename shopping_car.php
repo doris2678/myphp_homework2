@@ -263,7 +263,8 @@
             alert("請選擇至少一項商品");
             return;
         }
-        $_POST=mydata[0];
+        //$_POST=mydata[0];
+        $_POST=mydata.serializeArray();
         console.log("mydata:",mydata);
         console.log("$_POST:",$_POST);     
         $.post("./api/insert_shopping.php", $_POST, function(res){
