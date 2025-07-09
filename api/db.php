@@ -62,7 +62,7 @@ class DB{
    }else{
       $sql.=" `id`='$id'";
    }
-   echo $sql;
+   //echo $sql;
    return $this->pdo->exec($sql);
   }
 
@@ -116,7 +116,7 @@ class DB{
         $sql="insert into $this->table(`$cols`) values('$values')";
         
     }
-    echo $sql;
+   // echo $sql;
      return $this->pdo->exec($sql);
   }
 

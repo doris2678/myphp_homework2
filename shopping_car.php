@@ -123,58 +123,78 @@
 
 <body>
     <main>
-        <div class="container">
-            <h3>購物車</h3>            
-            <form action="" method="post">
-                姓名：<input type="text" name="customer_name" id="customer_name"><br>
-            <table>
-                
-                <tr>
-                    <th width="5%">品號</th>
-                    <th width="5%">品名</th>
-                    <th width="15%">產品圖</th>
-                    <th width="5%">單價</th>
-                    <th width="20%">數量</th>
-                    <th>金額</th>
-                </tr>
+        <h3>購物車</h3>
+        <form action="" method="post">
+            <div class="container">
+                <div class="form-title">訂購者資料</div>
+                <div class="row mt-4">
+                    <div class="col-sm-6 mb-3">
+                        <label for="date1" class="form-label text-center">訂購日期</label>
+                        <input type="text" class="form-control" id="date1" name="date1" value="<?php echo date("Y-m-d");?>" readonly>
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        <label for="name" class="form-label">姓名</label>
+                        <input type="text" class="form-control" id="name" name="name" value="<?= htmlspecialchars($_SESSION['mem']) ?>" readonly>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="tel" class="form-label">電話</label>
+                    <input type="text" class="form-control" id="tel" name="tel">
+                </div>
+            </div>
 
-                <?php                                    
-                 $table='items';
-                 $rows=${ucfirst($table)}->all();         
-                 foreach ($rows as $row): 
-                ?>                
-                    <tr>                        
-                        <td><?=$row['item_no'];?></td>
-                        <td><?=$row['item_name'];?></td>
-                        <td><?=$row['img'];?></td>
-                        <td><?=$row['price'];?></td>
-                        <td><input class="counts" data-price="100" type="number" value="1" min="0">
-                        </td>
-                        <td><span class="totals">100</span></td>
-                    </tr>
+            <div class="container">
 
-                    <?php
+                <div class="form-card">
+                    <table>
+                        <tr>
+                            <th width="5%">品號</th>
+                            <th width="5%">品名</th>
+                            <th width="15%">產品圖</th>
+                            <th width="5%">單價</th>
+                            <th width="20%">數量</th>
+                            <th>金額</th>
+                        </tr>
+
+                        <?php                                    
+                     $table='items';
+                     $rows=${ucfirst($table)}->all();         
+                    foreach ($rows as $row): 
+                    ?>
+
+                        <tr>
+                            <td>
+                                <span class="item_no"><?=$row['item_no'];?></span>
+                            </td>
+                            <td>
+                                <span class="item_name"><?=$row['item_name'];?></span>
+                            </td>
+                            <td><?=$row['img'];?></td>
+                            <td>
+                                <span class="price"><?=$row['price'];?></span>
+                            </td>
+                            <td><input class="counts" data-price="<?=$row['price'];?>" type="number" value="0" min="0">
+                            </td>
+                            <td><span class="totals">0</span></td>
+                        </tr>
+
+                        <?php
                       endforeach;
                     ?>
 
-                    <tr>
-                        <td colspan="6">總金額:
-                            <span id="originPrice" calss="sumprice1">150</span>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td colspan="6">總金額:
+                                <span id="originPrice" calss="sumprice1">0</span>
+                            </td>
+                        </tr>
 
-                    <tr id="discountInfoRow" style="display:none;">
-                        <td colspan="6" style="text-align: right; padding-right: 30px;">
-                            <span id="discountText" style="font-size: 16px; color: green;"></span>
-                        </td>
-                    </tr>
-            </table>
-            <div class="container">
-              <button type="button" class="btn btn-primary" onclick="add()">送出</button>              
-            </div>
-            </form>
+                    </table>
+                    <div class="container">
+                        <button type="button" class="btn btn-primary" onclick="add()">送出</button>
+                    </div>
+        </form>
         </div>
-        
+
 
         <!-- 載入jquery -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
@@ -182,33 +202,21 @@
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
         <script>
- 
-        const myCountJs = document.getElementById('myCount');
-        const myTotalJs = document.getElementById('myTotal');
-
         $(document).ready(function() {
-            //function
+
             function sumFun() {
                 let tmpTotals = $('.totals');
-                // console.log('tmpTotals', tmpTotals);
-                // console.log('counts', counts);
 
-                // json data / jq objs
                 let sum = 0;
                 $.each(tmpTotals, function(key, value) {
-                    // console.log('key', key);
-                    // console.log('value', value);
                     let tmpValue = Number($(value).text());
-                    // console.log('tmpValue', tmpValue);
-                    // console.log('tmpValue typeof', typeof (tmpValue));
                     sum += tmpValue;
                 });
 
-                // console.log('sum', sum);
                 return sum;
+                console.log(sum);
             }
 
-            // 1.bind
             const counts = $('.counts');
             const totals = $('.totals');
             const myCount = $('#myCount');
@@ -216,83 +224,75 @@
             const originPrice = $('#originPrice');
             const btn = $('.btn');
 
-            // 2.action
-
             counts.change(function() {
-                // console.log('myCount ok');
                 let tmpCount = Number($(this).val());
                 let tmpPrice = Number($(this).attr('data-price'));
-                // console.log('tmpCount', tmpCount);
-                // console.log('tmpPrice', tmpPrice);
 
                 let result = tmpCount * tmpPrice;
-                // console.log('result', result);
                 let tmpTr = $(this).parent().parent();
                 let tmpTotal = tmpTr.find('.totals');
-                // console.log('tmpTr', tmpTr);
-                // console.log('tmpTotal', tmpTotal);
                 tmpTotal.text(result);
 
                 // 總計顯示
                 let resultSum = Number(sumFun());
-                // console.log('resultSum', resultSum);              
+                originPrice.text(resultSum);
+            });
+        });
 
+
+        function add() {
+            let mydata = [];
+
+            $("tr").each(function() {
+                const item_no = $(this).find("td").eq(0).text().trim();
+                const item_name = $(this).find("td").eq(1).text().trim();
+                const price = parseFloat($(this).find("td").eq(3).text());
+                const qty = parseInt($(this).find("input.counts").val());
+
+                // 檢查是否為有效數量
+                if (!isNaN(qty) && qty > 0) {
+                    mydata.push({
+                        item_no: item_no,
+                        item_name: item_name,
+                        price: price,
+                        qty: qty
+                    });
+                }
             });
 
-        });
-
-
-    function add() {
-     let mydata = [];     
-
-        $("tr").each(function() {
-            const item_no = $(this).find("td").eq(0).text().trim();
-            const item_name = $(this).find("td").eq(1).text().trim();
-            const price = parseFloat($(this).find("td").eq(3).text());
-            const qty = parseInt($(this).find("input.counts").val());
-
-            // 檢查是否為有效數量
-            if (!isNaN(qty) && qty > 0) {
-                mydata.push({
-                    item_no: item_no,
-                    item_name: item_name,
-                    price: price,
-                    qty: qty
-                });
+            if (mydata.length === 0) {
+                alert("請選擇至少一項商品");
+                return;
             }
-        });
-        
-        if (mydata.length === 0) {
-            alert("請選擇至少一項商品");
-            return;
-        }      
-  
 
-   //const customer_name = 'test';   
-   const customer_name = document.getElementById('customer_name').value;
-   console.log(customer_name);
-   fetch('./api/insert_order.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            customer_name: customer_name,
-            //cart: cart
-            mydata: mydata
-        })
-    })
-    .then(res => res.json())
-    .then(data => {        
-        alert(data.message);        
-    })
-    .catch(err => {
-        //alert(data.message);
-        //console.error('錯誤:', err);
-    });        
+            const date1 = document.getElementById('date1').value;
+            const name = document.getElementById('name').value;
+            const tel = document.getElementById('tel').value;
+            const originPrice = $('#originPrice'); // 抓總金額元素
+            const amt = Number(originPrice.text()); // 取得總金額文字並轉成數字         
 
-    }
-
+            fetch('./api/insert_order.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        date1: date1 ,
+                        name: name,
+                        amt:amt,
+                        tel:tel,
+                        mydata: mydata
+                    })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    alert(data.message);
+                })
+                .catch(err => {
+                    //alert(data.message);
+                    //console.error('錯誤:', err);
+                });
+        }
         </script>
     </main>
     <?php include 'footer.php'; ?>

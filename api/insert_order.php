@@ -4,11 +4,16 @@
 
     // 取得 JSON 資料
     $data = json_decode(file_get_contents("php://input"), true);
-    
-    $customer_name = $data['customer_name'];
-    $mydata = $data['mydata'];
 
-    $array=['name'=>$customer_name];    
+    //order1
+    $date1 = $data['date1'];
+    $name = $data['name'];
+    $amt = $data['amt'];    
+    $tel = $data['tel'];    
+    $array=['date1'=>$date1,'name'=>$name,'amt'=>$amt,'tel'=>$tel];    
+
+    //order2
+    $mydata = $data['mydata'];
     $Order1->save($array);
 
     foreach ($mydata as $item) {
@@ -16,5 +21,5 @@
     }
 
     header("Content-Type: application/json;");
-    echo json_encode(["status" => "success", "message" => "訂單已儲存"]);
+    echo json_encode(["status" => "success", "message" => "訂單已儲存"]);    
 ?>

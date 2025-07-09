@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2025-07-08 00:08:31
+-- 產生時間： 2025-07-09 16:23:47
 -- 伺服器版本： 10.4.32-MariaDB
 -- PHP 版本： 8.2.12
 
@@ -143,9 +143,18 @@ CREATE TABLE `order1` (
   `acc` text NOT NULL,
   `name` text NOT NULL,
   `amt` int(11) NOT NULL DEFAULT 0,
+  `tel` varchar(20) NOT NULL,
   `created_time` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- 傾印資料表的資料 `order1`
+--
+
+INSERT INTO `order1` (`id`, `date1`, `or_no`, `acc`, `name`, `amt`, `tel`, `created_time`, `updated_time`) VALUES
+(38, '2025-07-09', '', '', 'doris01', 145, '', '2025-07-09 14:18:15', '2025-07-09 14:18:15'),
+(39, '2025-07-09', '', '', 'doris01', 100, '0900000000', '2025-07-09 14:23:12', '2025-07-09 14:23:12');
 
 -- --------------------------------------------------------
 
@@ -169,12 +178,10 @@ CREATE TABLE `order2` (
 --
 
 INSERT INTO `order2` (`id`, `or_no`, `item_no`, `item_name`, `price`, `qty`, `created_time`, `updated_time`) VALUES
-(1, 'aa', NULL, NULL, 0, 10, '2025-07-06 18:03:07', '2025-07-06 18:03:07'),
-(2, NULL, 'a', 'bb', 10, 1, '2025-07-06 18:12:53', '2025-07-06 18:12:53'),
-(3, NULL, 'b', 'bb', 10, 1, '2025-07-06 18:14:07', '2025-07-06 18:14:07'),
-(4, NULL, 'a001', '拿鐵', 50, 1, '2025-07-06 18:27:01', '2025-07-06 18:27:01'),
-(5, NULL, 'a001', '拿鐵', 50, 1, '2025-07-06 18:27:28', '2025-07-06 18:27:28'),
-(6, NULL, 'a001', '拿鐵', 50, 1, '2025-07-06 18:36:36', '2025-07-06 18:36:36');
+(65, NULL, 'a001', '拿鐵', 50, 1, '2025-07-09 14:18:15', '2025-07-09 14:18:15'),
+(66, NULL, 'a002', '紅茶', 35, 1, '2025-07-09 14:18:15', '2025-07-09 14:18:15'),
+(67, NULL, 'a005', '綠茶', 30, 2, '2025-07-09 14:18:15', '2025-07-09 14:18:15'),
+(68, NULL, 'a001', '拿鐵', 50, 2, '2025-07-09 14:23:12', '2025-07-09 14:23:12');
 
 -- --------------------------------------------------------
 
@@ -286,13 +293,13 @@ ALTER TABLE `menu`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `order1`
 --
 ALTER TABLE `order1`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `order2`
 --
 ALTER TABLE `order2`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `title`
