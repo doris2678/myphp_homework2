@@ -127,6 +127,9 @@
         <form action="" method="post">
             <div class="container">
                 <div class="form-title">訂購者資料</div>
+                <?php                                                        
+                     $rows_mem=$Member->find(['acc'=>$_SESSION['mem']]);   
+                ?>     
                 <div class="row mt-4">
                     <div class="col-sm-6 mb-3">
                         <label for="date1" class="form-label text-center">訂購日期</label>
@@ -134,7 +137,8 @@
                     </div>
                     <div class="col-sm-6 mb-3">
                         <label for="name" class="form-label">姓名</label>
-                        <input type="text" class="form-control" id="name" name="name" value="<?= htmlspecialchars($_SESSION['mem']) ?>" readonly>
+                        <input type="text" class="form-control" id="name" name="name" value="<?=$rows_mem['name']?>" readonly>
+                        <input type="hidden" class="form-control" id="acc" name="acc" value="<?=$rows_mem['acc']?>">
                     </div>
                 </div>
                 <div class="mb-3">
@@ -204,6 +208,9 @@
         <script>
         $(document).ready(function() {
 
+                         
+               
+
             function sumFun() {
                 let tmpTotals = $('.totals');
 
@@ -264,12 +271,14 @@
                 alert("請選擇至少一項商品");
                 return;
             }
+            
+             const date1 = $('#date1').val();
+             const acc = $('#acc').val();
+             const name = $('#name').val();            
+             const tel = $('#tel').val();                     
 
-            const date1 = document.getElementById('date1').value;
-            const name = document.getElementById('name').value;
-            const tel = document.getElementById('tel').value;
-            const originPrice = $('#originPrice'); // 抓總金額元素
-            const amt = Number(originPrice.text()); // 取得總金額文字並轉成數字         
+             const originPrice = $('#originPrice'); // 抓總金額元素
+             const amt = Number(originPrice.text()); // 取得總金額文字並轉成數字         
 
             fetch('./api/insert_order.php', {
                     method: 'POST',
@@ -278,7 +287,8 @@
                     },
                     body: JSON.stringify({
                         date1: date1 ,
-                        name: name,
+                        acc: acc,
+                        name: name,                        
                         amt:amt,
                         tel:tel,
                         mydata: mydata

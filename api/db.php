@@ -120,18 +120,6 @@ class DB{
      return $this->pdo->exec($sql);
   }
 
-  function get_orno(){
-   // select right(last_no,3) into @last_no from set_no;
-   // select left(last_no,8) into @last_date from set_no;
-   // set @today=date_format(CURRENT_DATE,'%Y%m%d');
-   // set @new_no = if(@last_date = @today, @last_no + 1, 1);
-   // set @new_no = CONCAT(@today, LPAD(@new_no, 4, '0'));
-   // select @last_no,@last_date,@new_no;
-
-  }
-
-
-
 }
 //DB***end***
 
@@ -141,6 +129,7 @@ $Member=new DB('member');
 $Items=new DB('items');
 $Order1=new DB('order1');
 $Order2=new DB('order2');
+$Set_no=new DB('set_no');
 $Menu=new DB('menu');
 $Title=new DB('title');
 $Bottom=new DB('bottom');
