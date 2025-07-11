@@ -199,24 +199,6 @@
         </form>
         </div>
 
-<!-- 回傳訊息用 Modal -->
-<div class="modal fade" id="resultModal" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">系統訊息</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body" id="modalMessage">
-        <!-- 這裡放回傳訊息 -->
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
-      </div>
-    </div>
-  </div>
-</div>
-
          <!-- 載入bs5 js -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/js/bootstrap.min.js"
             integrity="sha512-zKeerWHHuP3ar7kX2WKBSENzb+GJytFSBL6HrR2nPSR1kOX1qjm+oHooQtbDpDBSITgyl7QXZApvDfDWvKjkUw=="
@@ -229,8 +211,7 @@
 
         <script>
         $(document).ready(function() {
-
-            const myModal = $('.my-modal');                       
+           
                
 
             function sumFun() {
@@ -318,12 +299,8 @@
                 })
                 .then(res => res.json())
                 .then(data => {
-                    //alert(data.message);
-                    // 設定訊息
-                     $('#modalMessage').text(data.message);
-                     // 顯示 modal
-                     const modal = new bootstrap.Modal(document.getElementById('resultModal'));
-                     modal.show();
+                    alert(data.message);
+                    myModal.toggle();
                 })
                 .catch(err => {
                     //alert(data.message);
