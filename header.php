@@ -15,11 +15,20 @@
                         <a class="nav-link" href="index.php">首頁</a>
                     </li>
 
-                     <?php
-                     if(isset($_SESSION['mem'])):
+                    <?php
+                     if(isset($_SESSION['mem'])):                   
                     ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="member_center.php">會員中心</a>
+                        <a class="nav-link" href="main.php">會員中心</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="items.php">產品型錄</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="shopping_car.php">購物車</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="query_order.php">訂單查詢</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="./api/logout.php">登出</a>
@@ -39,4 +48,4 @@
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav>    

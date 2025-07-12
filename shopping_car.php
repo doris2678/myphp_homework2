@@ -13,14 +13,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/css/bootstrap.min.css"
         integrity="sha512-fw7f+TcMjTb7bpbLJZlP8g2Y4XcCyFZW8uy8HsRZsH/SwbMw0plKHFHr99DN3l04VsYNwvzicUX/6qurvIxbxw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- <link rel="stylesheet" href="../css/style.css"> -->
+    <link rel="stylesheet" href="../css/style.css">
     <style>
-    body {
+    /* body {
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         background-color: #f9f9f9;
         padding: 20px;
         color: #333;
-    }
+    } */
 
     .container {
         max-width: 900px;
@@ -122,6 +122,7 @@
 </head>
 
 <body>
+    <?php include 'header.php'; ?>
     <main>
         <h3>購物車</h3>
         <form action="" method="post">
@@ -129,15 +130,17 @@
                 <div class="form-title">訂購者資料</div>
                 <?php                                                        
                      $rows_mem=$Member->find(['acc'=>$_SESSION['mem']]);   
-                ?>     
+                ?>
                 <div class="row mt-4">
                     <div class="col-sm-6 mb-3">
                         <label for="date1" class="form-label text-center">訂購日期</label>
-                        <input type="text" class="form-control" id="date1" name="date1" value="<?php echo date("Y-m-d");?>" readonly>
+                        <input type="text" class="form-control" id="date1" name="date1"
+                            value="<?php echo date("Y-m-d");?>" readonly>
                     </div>
                     <div class="col-sm-6 mb-3">
                         <label for="name" class="form-label">姓名</label>
-                        <input type="text" class="form-control" id="name" name="name" value="<?=$rows_mem['name']?>" readonly>
+                        <input type="text" class="form-control" id="name" name="name" value="<?=$rows_mem['name']?>"
+                            readonly>
                         <input type="hidden" class="form-control" id="acc" name="acc" value="<?=$rows_mem['acc']?>">
                     </div>
                 </div>
@@ -194,34 +197,34 @@
 
                     </table>
                     <div class="container">
-                        <button type="button" class="btn btn-primary" onclick="add()">送出</button>                        
+                        <button type="button" class="btn btn-primary" onclick="add()">送出</button>
                     </div>
         </form>
         </div>
 
-<!-- 回傳訊息用 Modal -->
-<div class="modal fade" id="resultModal" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">系統訊息</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body" id="modalMessage">
-        <!-- 這裡放回傳訊息 -->
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
-      </div>
-    </div>
-  </div>
-</div>
+        <!-- 回傳訊息用 Modal -->
+        <div class="modal fade" id="resultModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center">系統訊息</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body text-center" id="modalMessage">
+                        <!-- 這裡放回傳訊息 -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-         <!-- 載入bs5 js -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/js/bootstrap.min.js"
-            integrity="sha512-zKeerWHHuP3ar7kX2WKBSENzb+GJytFSBL6HrR2nPSR1kOX1qjm+oHooQtbDpDBSITgyl7QXZApvDfDWvKjkUw=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+        <!-- 載入bs5 js (bundle) -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/js/bootstrap.bundle.min.js"
+        integrity="sha512-Tc0i+vRogmX4NN7tuLbQfBxa8JkfUSAxSFVzmU31nVdHyiHElPPy2cWfFacmCJKw0VqovrzKhdd2TSTMdAxp2g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        
         <!-- 載入jquery -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
             integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
@@ -229,29 +232,20 @@
 
         <script>
         $(document).ready(function() {
-
-            const myModal = $('.my-modal');                       
-               
+            const counts = $('.counts');
+            const totals = $('.totals');
+            const originPrice = $('#originPrice');
 
             function sumFun() {
                 let tmpTotals = $('.totals');
-
                 let sum = 0;
                 $.each(tmpTotals, function(key, value) {
                     let tmpValue = Number($(value).text());
                     sum += tmpValue;
                 });
-
                 return sum;
-                console.log(sum);
             }
 
-            const counts = $('.counts');
-            const totals = $('.totals');
-            const myCount = $('#myCount');
-            const myTotal = $('#myTotal');
-            const originPrice = $('#originPrice');
-            const btn = $('.btn');
 
             counts.change(function() {
                 let tmpCount = Number($(this).val());
@@ -266,9 +260,9 @@
                 let resultSum = Number(sumFun());
                 originPrice.text(resultSum);
             });
+
         });
-
-
+        ///////////////////////////////////////////////////////
         function add() {
             let mydata = [];
 
@@ -293,14 +287,14 @@
                 alert("請選擇至少一項商品");
                 return;
             }
-            
-             const date1 = $('#date1').val();
-             const acc = $('#acc').val();
-             const name = $('#name').val();            
-             const tel = $('#tel').val();                     
 
-             const originPrice = $('#originPrice'); // 抓總金額元素
-             const amt = Number(originPrice.text()); // 取得總金額文字並轉成數字         
+            const date1 = $('#date1').val();
+            const acc = $('#acc').val();
+            const name = $('#name').val();
+            const tel = $('#tel').val();
+
+            const originPrice = $('#originPrice'); // 抓總金額元素
+            const amt = Number(originPrice.text()); // 取得總金額文字並轉成數字         
 
             fetch('./api/insert_order.php', {
                     method: 'POST',
@@ -308,22 +302,20 @@
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        date1: date1 ,
+                        date1: date1,
                         acc: acc,
-                        name: name,                        
-                        amt:amt,
-                        tel:tel,
+                        name: name,
+                        amt: amt,
+                        tel: tel,
                         mydata: mydata
                     })
                 })
                 .then(res => res.json())
                 .then(data => {
                     //alert(data.message);
-                    // 設定訊息
-                     $('#modalMessage').text(data.message);
-                     // 顯示 modal
-                     const modal = new bootstrap.Modal(document.getElementById('resultModal'));
-                     modal.show();
+                    $('#modalMessage').text(data.message);
+                    const modal = new bootstrap.Modal(document.getElementById('resultModal'));
+                    modal.show();
                 })
                 .catch(err => {
                     //alert(data.message);
@@ -333,7 +325,7 @@
         </script>
     </main>
     <?php include 'footer.php'; ?>
-    
+
 </body>
 
 </html>

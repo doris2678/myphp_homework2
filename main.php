@@ -11,19 +11,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./css/style.css">
 
-    <style>
-        .iframe-top {
-            width: 100%;
-            height: 60px;
-            border: none;
-        }
-
-        .iframe-bottom {
-            width: 100%;
-            height: calc(100vh - 60px - 120px); /* 減去 header/footer 高度 */
-            border: none;
-        }
-
+    <style>      
         main {
             margin: 0;
             padding: 0;
@@ -40,16 +28,10 @@
 
     <main>
         <h2>歡迎光臨，<?= htmlspecialchars($_SESSION['mem']) ?></h2>
-
-        <iframe class="iframe-top" name="top" src="show_link.html" scrolling="no"></iframe>
-        <iframe class="iframe-bottom" name="bottom" src="shopping_car.php"></iframe>
+        
     </main>
 
-    <?php include 'footer.php';?>
- <!-- 載入bs5 js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/js/bootstrap.min.js"
-        integrity="sha512-zKeerWHHuP3ar7kX2WKBSENzb+GJytFSBL6HrR2nPSR1kOX1qjm+oHooQtbDpDBSITgyl7QXZApvDfDWvKjkUw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <?php include 'footer.php';?> 
 
 </body>
 

@@ -54,3 +54,35 @@ footer {
     background-color: black;
     text-align: center;
 }
+
+.box1 {
+    width: 100%;
+    /* background-color: lightblue; */
+}
+
+.box2 {
+    /* border:1px solid black; */
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+    /* background-color: lightpink; */
+}
+
+.box2>img {
+    border-radius: 5px;
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.box3 {
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.position-relative:hover .hover-box {
+    display: block;
+}

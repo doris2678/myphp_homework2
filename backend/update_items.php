@@ -22,7 +22,7 @@
 
     <main>
         <div class="container mt-3">
-            <h2>編輯商品資料</h2>
+            <h2 class="text-center">編輯商品資料</h2>
             <?php
                 $table=$_GET['table'];
                 $db=${ucfirst($table)};
@@ -33,7 +33,7 @@
                 }
             ?>
 
-            <form action="../api/update.php" method="post">
+            <form action="../api/update.php" method="post" enctype="multipart/form-data">
                 <div class="mb-3 mt-3">
                     <label for="item_no">商品編號:</label>
                     <input type="text" class="form-control" id="item_no" name="item_no" value="<?=$row['item_no'];?>">
@@ -41,7 +41,8 @@
 
                 <div class="mb-3 mt-3">
                     <label for="item_name">商品名稱:</label>
-                    <input type="text" class="form-control" id="item_name" name="item_name" value="<?=$row['item_name'];?>">
+                    <input type="text" class="form-control" id="item_name" name="item_name"
+                        value="<?=$row['item_name'];?>">
                 </div>
 
                 <div class="mb-3 mt-3">
@@ -65,6 +66,22 @@
                 </div>
 
                 <div class="mb-3 mt-3">
+                    商品圖片：<img src="../images/<?=$row['img'];?>" alt='商品圖片預覽'
+                        style='max-width: 200px; max-height: 200px;'>
+                </div>
+                <hr>  
+                <div class="mb-3 mt-3 d-flex align-items-center">
+                    <label for="img" class="me-2 mb-0" style="white-space: nowrap;">更新圖片：</label>
+                    <input type="file" class="form-control" id="img" name="img" style="width: auto;">
+                </div>
+                  
+                <!-- 更新圖片預覽 -->
+                <div id="preview-container" class="mb-3 mt-3" style="display:none;">
+                    <label for="preview-image" class="me-2 mb-0" style="white-space: nowrap;">更新圖片預覽</label>
+                    <img id="preview-image" src="" alt="更新圖片預覽" style="max-width: 200px; max-height: 200px;">
+                </div>
+
+                <div class="mb-3 mt-3">
                     <div class="row">
                         <button type="submit" class="btn btn-primary">編輯</button>
                     </div>
@@ -75,7 +92,25 @@
         </div>
     </main>
 
-    
+    <script>
+    $(document).ready(function() {
+        previewImg = $('#img');
+
+        previewImg.change(function(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            // 顯示圖片預覽區塊
+            $('#preview-container').show();
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                $('#preview-image').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(file);
+        });
+    });
+    </script>
 
 </body>
 

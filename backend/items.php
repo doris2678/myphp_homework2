@@ -48,7 +48,7 @@
                         <td><?=$row['item_name'];?></td>
                         <td><?=$row['price'];?></td>
                         <td><?=$row['cost'];?></td>
-                        <td><?=$row['bg_date'];?></td>                       
+                        <td><?=$row['bg_date'];?></td>
                         <td><?=$row['ed_date'];?></td>
 
                         <td>
@@ -68,7 +68,26 @@
         </div>
     </main>
 
-    
+    <script>
+    $(document).ready(function() {
+        previewImg = $('#img');
+
+        previewImg.change(function(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            // 顯示圖片預覽區塊
+            $('#preview-container').show();
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                $('#preview-image').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(file);
+        });
+    });
+    </script>
+
 
 </body>
 

@@ -21,7 +21,7 @@
     <main>
         <div class="container mt-3">
             <h2>商品管理</h2>
-            <form action="../api/insert.php" method="post">
+            <form action="../api/insert.php" method="post" enctype="multipart/form-data">
                 <div class="mb-3 mt-3">
                     <label for="item_no">商品編號:</label>
                     <input type="text" class="form-control" id="item_no" name="item_no">
@@ -52,6 +52,17 @@
                     <input type="date" class="form-control" id="ed_date" name="ed_date">
                 </div>
 
+                <div class="mb-3 mt-3 d-flex align-items-center">
+                    <label for="img" class="me-2 mb-0" style="white-space: nowrap;">新增圖片：</label>
+                    <input type="file" class="form-control" id="img" name="img" style="width: auto;">
+                </div>
+
+                <!-- 新增圖片預覽 -->
+                <div id="preview-container" class="mb-3 mt-3" style="display:none;">
+                    <label for="preview-image" class="me-2 mb-0" style="white-space: nowrap;">新增圖片預覽</label>
+                    <img id="preview-image" src="" alt="新增圖片預覽" style="max-width: 200px; max-height: 200px;">
+                </div>
+
                 <div class="mb-3 mt-3">
                     <div class="row">
                         <button type="submit" class="btn btn-primary">新增</button>&nbsp;&nbsp;<button type="reset"
@@ -62,8 +73,25 @@
             </form>
         </div>
     </main>
+    <script>
+    $(document).ready(function() {
+        previewImg = $('#img');
 
-    
+        previewImg.change(function(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            // 顯示圖片預覽區塊
+            $('#preview-container').show();
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                $('#preview-image').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(file);
+        });
+    });
+    </script>
 </body>
 
 </html>
