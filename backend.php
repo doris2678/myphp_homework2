@@ -116,11 +116,11 @@
             <!-- 可收合的子選單 -->
             <a data-bs-toggle="collapse" href="#productMenu" role="button" aria-expanded="false"
                 aria-controls="productMenu">
-                商品管理 ▾
+                商品及訂單管理 ▾
             </a>
             <div class="collapse" id="productMenu">
-                <a href="./backend/items.php?table=items" target="contentFrame" class="ps-4">商品列表</a>
-                <!-- <a href="./backend/add_items.php" target="contentFrame" class="ps-4">新增商品</a> -->
+                <a href="./backend/items.php?table=items" target="contentFrame" class="ps-4">商品列表</a>                
+                <a href="./backend/bd_query_order.php" target="contentFrame" class="ps-4">訂單查詢</a>
             </div>
             <a class="nav-link" href="./api/admin_logout.php">登出</a>            
             <?php

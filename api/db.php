@@ -76,6 +76,7 @@ class DB{
      }else{
         $sql.=$arg[0];
      }      
+     //echo $sql;
    }
 
    if(isset($arg[1])){
