@@ -1,123 +1,146 @@
+<?php
+ session_start();
+ ?>
+
 <!DOCTYPE html>
 <html lang="zh-Hant">
 
 <head>
     <meta charset="UTF-8">
     <title>後台管理系統</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
     <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
+    html,
     body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        /* background-color: #f4f6f8; */
-        padding-top: 60px;
-        /* header 高度 */
-        padding-left: 200px;
-        /* sidebar 寬度 */
-        padding-bottom: 40px;
-        /* footer 高度 */
-    }
-
-    .header {
-        width: 100%;
-        height: 60px;
-        background-color: #2c3e50;
-        color: white;
-        padding: 15px 30px;
-        box-sizing: border-box;
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 999;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    .header h1 {
-        font-size: 20px;
+        height: 100%;
         margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        overflow: hidden;
     }
 
-    #sidebar {
+    .sidebar {
         width: 200px;
-        background: #34495e;
+        background-color: #343a40;
         color: white;
-        padding: 20px;
-        position: fixed;
-        top: 60px;
-        bottom: 40px;
-        left: 0;
-        overflow-y: auto;
+        padding-top: 1rem;
     }
 
-    #sidebar h2 {
-        font-size: 18px;
-        margin-bottom: 20px;
-    }
-
-    #sidebar a {
+    .sidebar a {
         color: white;
         text-decoration: none;
+        padding: 10px 1rem;
         display: block;
-        padding: 10px;
-        margin-bottom: 8px;
         border-radius: 4px;
-        transition: background-color 0.2s;
     }
 
-    #sidebar a:hover {
+    .sidebar a:hover {
         background-color: #1abc9c;
     }
 
-    #content {
-        margin-left: 200px;
-        margin-top: 60px;
-        margin-bottom: 40px;
-        width: calc(100% - 200px);
-        height: calc(100vh - 100px);
+    .main {
+        flex: 1;
+        overflow: hidden;
+    }
+
+    iframe {
         border: none;
+        width: 100%;
+        height: calc(100vh - 56px - 40px);
+        /* 扣掉 navbar 和 footer 高度 */
     }
 
     .footer {
-        width: 100%;
         height: 40px;
-        background-color: #ecf0f1;
-        color: #7f8c8d;
+        background-color: #f8f9fa;
+        color: #6c757d;
         text-align: center;
         line-height: 40px;
-        position: fixed;
-        bottom: 0;
-        left: 0;
         font-size: 14px;
+    }
+
+    .layout {
+        display: flex;
+        height: calc(100vh - 56px);
+        /* 扣掉 navbar */
     }
     </style>
 </head>
 
 <body>
 
-    <div class="header">
-        <h1>後台管理系統</h1>
-        <!-- <div>            
-            <span>歡迎，管理員</span>
-        </div> -->
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <span class="navbar-brand">後台管理系統</span>
+            <div class="dropdown ms-auto">
+                <button class="btn btn-outline-light dropdown-toggle" type="button" id="userMenu"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    管理員
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+
+                    <?php
+                    if(isset($_SESSION['admin'])):                   
+                    ?>                     
+                    <li><a class="dropdown-item" href="./api/admin_logout.php">登出</a></li>
+                    <?php
+                    else:
+                    ?>     
+                    <li><a class="dropdown-item" href="admin_login.php">登入</a></li>
+                    <?php
+                    endif;
+                    ?> 
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Layout -->
+    <div class="layout">
+        <!-- Sidebar -->
+        <div class="sidebar d-flex flex-column">
+
+            <?php
+                 if(isset($_SESSION['admin'])):                   
+             ?>
+            <div class="px-3 pb-2 fw-bold">管理選單</div>
+            <a href="./backend/admin.php" target="contentFrame">帳號管理</a>
+            <a href="./backend/member.php" target="contentFrame">會員管理</a>            
+            <!-- 可收合的子選單 -->
+            <a data-bs-toggle="collapse" href="#productMenu" role="button" aria-expanded="false"
+                aria-controls="productMenu">
+                商品管理 ▾
+            </a>
+            <div class="collapse" id="productMenu">
+                <a href="./backend/items.php?table=items" target="contentFrame" class="ps-4">商品列表</a>
+                <!-- <a href="./backend/add_items.php" target="contentFrame" class="ps-4">新增商品</a> -->
+            </div>
+            <a class="nav-link" href="./api/admin_logout.php">登出</a>            
+            <?php
+              else:
+            ?>            
+            <a href="admin_login.php">登入</a>
+            <?php
+              endif;
+            ?>
+        </div>
+
+        <!-- 主內容 -->
+        <div class="main">
+            <iframe name="contentFrame"></iframe>
+        </div>
     </div>
 
-    <div id="sidebar">
-        <h2>管理選單</h2>
-        <a href="./backend/admin.php" target="contentFrame">帳號管理</a>
-        <a href="./backend/member.php" target="contentFrame">會員管理</a>
-        <a href="./backend/items.php" target="contentFrame">商品管理</a>
-    </div>
-
-    <iframe id="content" name="contentFrame"></iframe>
-
+    <!-- Footer -->
     <div class="footer">
-        <div style="color:white">Copyright © 2025 Tieat. All Rights Reserved 泰好喝有限公司 </div>
+        Copyright © 2025 Tieat. All Rights Reserved 泰好喝有限公司
     </div>
 
 </body>

@@ -23,7 +23,7 @@
     } */
 
     .container {
-        max-width: 900px;
+        /* max-width: 900px; */
         margin: 0 auto;
         background-color: #fff;
         padding: 25px;
@@ -48,8 +48,8 @@
     td {
         padding: 12px;
         border: 1px solid #ccc;
-        text-align: center;
-        vertical-align: middle;
+        /* text-align: center; */
+        /* vertical-align: middle; */
     }
 
     tr:nth-child(even) {
@@ -83,11 +83,11 @@
         color: #007bff;
     }
 
-    td[colspan="6"] {
+    /* td[colspan="6"] {
         background-color: #f1f1f1;
         text-align: right;
         padding-right: 30px;
-    }
+    } */
 
     .sumprice2 {
         font-size: 18px;
@@ -153,16 +153,25 @@
             <div class="container">
 
                 <div class="form-card">
-                    <table>
-                        <tr>
-                            <th width="5%">品號</th>
-                            <th width="5%">品名</th>
-                            <th width="15%">產品圖</th>
-                            <th width="5%">單價</th>
-                            <th width="20%">數量</th>
-                            <th>金額</th>
-                        </tr>
-
+                    <table>                        
+                        <colgroup>
+                            <col style="width: 10%">
+                            <col style="width: 20%">
+                            <col style="width: 15%">
+                            <col style="width: 10%">
+                            <col style="width: 20%">
+                            <col style="width: 25%">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th>品號</th>
+                                <th>品名</th>
+                                <th>產品圖</th>
+                                <th>單價</th>
+                                <th>數量</th>
+                                <th>金額</th>
+                            </tr>
+                        </thead>
                         <?php                                    
                      $table='items';
                      $rows=${ucfirst($table)}->all();         
@@ -176,8 +185,13 @@
                             <td>
                                 <span class="item_name"><?=$row['item_name'];?></span>
                             </td>
-                            <td><?=$row['img'];?></td>
+                            
                             <td>
+                                <img src="../images/<?=$row['img'];?>"
+                                  style='max-width: 200px; max-height: 200px;'>
+                            </td>      
+
+                            <td>                                
                                 <span class="price"><?=$row['price'];?></span>
                             </td>
                             <td><input class="counts" data-price="<?=$row['price'];?>" type="number" value="0" min="0">
@@ -222,9 +236,9 @@
 
         <!-- 載入bs5 js (bundle) -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/js/bootstrap.bundle.min.js"
-        integrity="sha512-Tc0i+vRogmX4NN7tuLbQfBxa8JkfUSAxSFVzmU31nVdHyiHElPPy2cWfFacmCJKw0VqovrzKhdd2TSTMdAxp2g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        
+            integrity="sha512-Tc0i+vRogmX4NN7tuLbQfBxa8JkfUSAxSFVzmU31nVdHyiHElPPy2cWfFacmCJKw0VqovrzKhdd2TSTMdAxp2g=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
         <!-- 載入jquery -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
             integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="

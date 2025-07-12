@@ -21,8 +21,8 @@
 
     <main>
         <div class="container mt-3">
-            <h2 class="text-center">帳號管理</h2>
-            <?php $table='admin'; ?>
+            <h2 class="text-center">帳號管理</h2>            
+            <?php $table='admin'?>
             <div class='btns'><a class="btn btn-primary" href="add_admin.php?table=<?=$table;?>"><i
                         class="fa-regular fa-pen-to-square"></i>新增</a>
             </div>
@@ -35,14 +35,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php                          
+                    <?php                       
                      $rows=${ucfirst($table)}->all();         
                      foreach ($rows as $row): 
                     ?>
                     <tr>
                         <td><?=$row['acc'];?></td>
                         <td><?=$row['pw'];?></td>
-                        <td>
+                        <td>                                                                                                                                       
                             <a class="btn btn-warning" href="update_admin.php?id=<?=$row['id'];?>&table=<?=$table;?>">
                                 <i class="fa-solid fa-wrench"></i>修改</a>
                             <a class="btn btn-danger" href="../api/delete.php?id=<?=$row['id'];?>&table=<?=$table;?>"><i

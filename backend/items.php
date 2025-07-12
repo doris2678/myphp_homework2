@@ -14,33 +14,82 @@
         integrity="sha512-fw7f+TcMjTb7bpbLJZlP8g2Y4XcCyFZW8uy8HsRZsH/SwbMw0plKHFHr99DN3l04VsYNwvzicUX/6qurvIxbxw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- <link rel="stylesheet" href="../css/style.css"> -->
+    <style>
+    main {
+        margin-bottom: 80px;
+        /* 預留空間給分頁 */
+    }
+
+    img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .fixed-footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        padding: 10px 0;
+        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+        z-index: 100;
+    }
+
+    .table-fixed {
+        table-layout: fixed;
+        width: 100%;
+    }
+
+    .table-fixed th,
+    .table-fixed td {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    th,
+    td{
+        text-align:center;
+    }
+    </style>
 </head>
 
 <body>
     <?php include 'bd_header.php';?>
 
     <main>
-        <div class="container mt-3">
+        <div class="container-fluid mt-3">
+
             <h2 class="text-center">商品管理</h2>
-            <?php $table='items'; ?>
+            <?php $table='items'?>
             <div class='btns'><a class="btn btn-primary" href="add_items.php?table=<?=$table;?>"><i
                         class="fa-regular fa-pen-to-square"></i>新增</a>
             </div>
-            <table class="table table-bordered table-hover">
+            <table class="table table-bordered table-hover table-fixed">
                 <thead>
                     <tr>
-                        <th>商品編號</th>
-                        <th>商品名稱</th>
-                        <th>價格</th>
-                        <th>成本</th>
-                        <th>上架日</th>
-                        <th>下架日</th>
-                        <th>操作</th>
+                        <th style="width: 10%;">商品編號</th>
+                        <th style="width: 20%;">商品名稱</th>
+                        <th style="width: 10%;">價格</th>
+                        <th style="width: 10%;">成本</th>
+                        <th style="width: 10%;">上架日</th>
+                        <th style="width: 10%;">下架日</th>
+                        <th style="width: 10%;">商品圖</th>
+                        <th style="width: 20%;">操作</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php                          
-                     $rows=${ucfirst($table)}->all();         
+                    <?php             
+                     $all=count(${ucfirst($table)}->all());
+                     $div=8;
+                     $pages=ceil($all/$div);
+                     $now=$_GET['p']??1;
+                     $start=($now-1)*$div;
+                     $rows=${ucfirst($table)}->all(" limit $start,$div");
+                     //$rows=${ucfirst($table)}->all();         
                      foreach ($rows as $row): 
                     ?>
                     <tr>
@@ -50,7 +99,9 @@
                         <td><?=$row['cost'];?></td>
                         <td><?=$row['bg_date'];?></td>
                         <td><?=$row['ed_date'];?></td>
-
+                        <td>
+                            <img src="../images/<?=$row['img'];?>" style='max-width: 200px; max-height: 200px;'>
+                        </td>
                         <td>
                             <a class="btn btn-warning" href="update_items.php?id=<?=$row['id'];?>&table=<?=$table;?>">
                                 <i class="fa-solid fa-wrench"></i>修改</a>
@@ -63,6 +114,26 @@
                     ?>
                 </tbody>
             </table>
+
+            <!-- 分頁 -->
+            <div class="fixed-footer">
+                <div class="container mt-3">
+                    <ul class="pagination justify-content-center">
+                        <?php if($now-1>0): ?>
+                         <li class="page-item"><a class="page-link" href="?p=<?=$now-1;?>"><</a></li>
+                        <?php endif ;?>
+
+                        <?php for($i=1;$i<=$pages;$i++): ?>
+                         <li class="page-item <?=($now==$i)?'active':'';?>"><a class="page-link"
+                                href="?p=<?=$i;?>"><?=$i;?></a></li>
+                        <?php endfor;?>
+
+                        <?php if($now+1<=$pages):?>
+                         <li class="page-item"><a class="page-link" href="?p=<?=$now+1;?>">></a></li>
+                        <?php endif ;?>
+                    </ul>
+                </div>
+            </div>
 
         </div>
         </div>

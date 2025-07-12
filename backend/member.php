@@ -22,7 +22,7 @@
     <main>
         <div class="container mt-3">
             <h2 class="text-center">會員管理</h2>
-            <?php $table='member'; ?>           
+            <?php $table='member';?>     
 
             <table class="table table-bordered table-hover">
                 <thead>

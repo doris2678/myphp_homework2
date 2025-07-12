@@ -1,6 +1,6 @@
 <?php
- session_start(); 
-?>
+ session_start();  
+ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,6 +38,7 @@
                             class="btn btn-primary">重置</button>
                     </div>
                 </div>
+                
                 <input type="hidden" name="table" value="<?=$_GET['table'];?>">
             </form>
         </div>
