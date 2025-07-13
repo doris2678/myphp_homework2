@@ -1,129 +1,174 @@
 <?php
- session_start();
- include_once "./api/db.php";
+ session_start(); 
  ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>泰好喝</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/css/bootstrap.min.css"
-        integrity="sha512-fw7f+TcMjTb7bpbLJZlP8g2Y4XcCyFZW8uy8HsRZsH/SwbMw0plKHFHr99DN3l04VsYNwvzicUX/6qurvIxbxw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="./css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>泰好喝手搖飲料專賣店</title>
+    <?php include "title_link.php" ?>
 </head>
 
 <body>
-
     <?php include 'header.php';?>
 
-    <main>
-        <!-- carousel  -->
-        <div id="demo" class="carousel slide" data-bs-ride="carousel">
-
-            <!-- Indicators/dots -->
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
-                <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-                <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
-            </div>
-
-            <!-- The slideshow/carousel -->
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="./images/carousel01.jpg" alt="" class="d-block" style="width:100%">
+    <!-- 首頁區塊 -->
+    <section id="home" class="hero">
+        <!-- 輪播圖片 -->
+        <div class="carousel">
+            <div class="carousel-container">
+                <div class="carousel-slide active">
+                    <img src="./images/drink-1.jpg" alt="芒果冰沙">
+                    <div class="carousel-content">
+                        <h2>芒果冰沙</h2>
+                        <p>嚴選當季新鮮水果，每一口都是自然的甜美</p>
+                        <button class="cta-button">立即訂購</button>
+                    </div>
                 </div>
-                <div class="carousel-item">
-                    <img src="./images/carousel02.jpg" alt="" class="d-block" style="width:100%">
+                <div class="carousel-slide">
+                    <img src="./images/drink-9.jpg" alt="珍珠奶茶">
+                    <div class="carousel-content">
+                        <h2>經典珍珠奶茶</h2>
+                        <p>香濃奶茶配上Q彈珍珠，經典不敗的好滋味</p>
+                        <button class="cta-button">立即訂購</button>
+                    </div>
                 </div>
-                <div class="carousel-item">
-                    <img src="./images/carousel03.jpg" alt="" class="d-block" style="width:100%">
-                </div>
-            </div>
 
-            <!-- Left and right controls/icons -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-                <span class="carousel-control-next-icon"></span>
-            </button>
-        </div>
-        <!-- carousel  end-->
-
-        <!-- container1  -->
-        <div id="box1"></div>
-        <div class="container mt-3">
-            <div class="row">
-                <div class="col text-center">
-                    <div class="box1">
-                        <img class="img-fluid" src="./images_s20250702/img.jpg" alt="">                       
+                <div class="carousel-slide">
+                    <img src="./images/drink-8.jpg" alt="金桔檸檬">
+                    <div class="carousel-content">
+                        <h2>金桔檸檬</h2>
+                        <p>新鮮金桔與檸檬完美結合，酸甜清爽，維他命C滿滿</p>
+                        <button class="cta-button">立即訂購</button>
                     </div>
                 </div>
             </div>
+            <button class="carousel-btn prev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="carousel-btn next">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <div class="carousel-dots">
+                <span class="dot active" data-slide="0"></span>
+                <span class="dot" data-slide="1"></span>
+                <span class="dot" data-slide="2"></span>
+            </div>
         </div>
-        <!-- container1 end -->
-        <!-- container2  -->
-        <div id="box2"></div>
+    </section>
+
+    <!-- 產品介紹區塊 -->
+    <section id="products" class="products">
         <div class="container">
-            <div class="row">
-                <div class="col-12 col-sm-4 mt-3">
-                    <!-- bs Card -->
-                    <div class="card" style="width:100%">
-                        <img class="card-img-top" src="./images/img01.jpg" alt="" style="width:100%">
-                        <div class="card-body">
-                            <h5 class="card-title text-center">Redmi Pad 2 4G</h5>
-                            <a href="https://www.mi.com/tw/product/redmi-pad-2-4g/" class="btn btn-light w-100"
-                                target="_blank"><i class="fa-regular fa-heart"></i>&nbsp;&nbsp;暸解更多</a>
-                        </div>
+            <h2 class="section-title">熱門產品</h2>
+            <p class="section-subtitle">精選最受歡迎的飲品，每一杯都是用心調製</p>
+
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="./images/drink-2.jpg" alt="珍珠奶茶">
                     </div>
-
-                </div>
-
-                <div class="col-12 col-sm-4 mt-3">
-                    <!-- bs Card -->
-                    <div class="card" style="width:100%">
-                        <img class="card-img-top" src="./images/img02.jpg" alt="" style="width:100%">
-                        <div class="card-body">
-                            <h5 class="card-title text-center">Redmi Pad SE 8.7</h5>
-                            <a href="https://www.mi.com/tw/product/redmi-pad-se-8-7-inch/" class="btn btn-light w-100"
-                                target="_blank"><i class="fa-regular fa-heart"></i>&nbsp;&nbsp;暸解更多</a>
-                        </div>
+                    <div class="product-info">
+                        <h3>珍珠奶茶</h3>
+                        <p>香濃奶茶配上Q彈珍珠，經典不敗的好滋味</p>
+                        <div class="product-price">NT$ 55</div>
+                        <a href="shopping_car.php"><button class="order-btn">我要購買</button></a>
                     </div>
                 </div>
 
-                <div class="col-12 col-sm-4 mt-3">
-                    <!-- bs Card -->
-                    <div class="card" style="width:100%">
-                        <img class="card-img-top" src="./images/img03.jpg" alt="" style="width:100%">
-                        <div class="card-body">
-                            <h5 class="card-title text-center">Redmi Pad Pro</h5>
-                            <a href="https://www.mi.com/tw/product/redmi-pad-pro/" class="btn btn-light w-100"
-                                target="_blank"><i class="fa-regular fa-heart"></i>&nbsp;&nbsp;暸解更多</a>
-                        </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="./images/drink-5.jpg" alt="茉莉綠茶">
+                    </div>
+                    <div class="product-info">
+                        <h3>茉莉綠茶</h3>
+                        <p>精選茉莉花與綠茶完美融合，清香淡雅，回甘持久</p>
+                        <div class="product-price">NT$ 40</div>
+                        <a href="shopping_car.php"><button class="order-btn">我要購買</button></a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="./images/drink-7.jpg" alt="阿薩姆紅茶">
+                    </div>
+                    <div class="product-info">
+                        <h3>阿薩姆紅茶</h3>
+                        <p>印度阿薩姆茶葉，濃郁醇厚，香氣四溢</p>
+                        <div class="product-price">NT$ 40</div>
+                        <a href="shopping_car.php"><button class="order-btn">我要購買</button></a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="./images/drink-4.jpg" alt="蜂蜜檸檬茶">
+                    </div>
+                    <div class="product-info">
+                        <h3>蜂蜜檸檬茶</h3>
+                        <p>新鮮檸檬片搭配天然蜂蜜，酸甜清爽好滋味</p>
+                        <div class="product-price">NT$ 50</div>
+                        <a href="shopping_car.php"><button class="order-btn">我要購買</button></a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="./images/drink-1.jpg" alt="芒果冰沙">
+                    </div>
+                    <div class="product-info">
+                        <h3>芒果冰沙</h3>
+                        <p>新鮮芒果製成，綿密冰沙口感，夏日必備清涼飲品</p>
+                        <div class="product-price">NT$ 70</div>
+                        <a href="shopping_car.php"><button class="order-btn">我要購買</button></a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="./images/drink-8.jpg" alt="金桔檸檬">
+                    </div>
+                    <div class="product-info">
+                        <h3>金桔檸檬</h3>
+                        <p>新鮮金桔與檸檬完美結合，酸甜清爽，維他命C滿滿</p>
+                        <div class="product-price">NT$ 65</div>
+                        <a href="shopping_car.php"><button class="order-btn">我要購買</button></a>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- container2 end -->
+    </section>
 
-    </main>
+    <!-- 特色介紹 -->
+    <section class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-item">
+                    <i class="fas fa-leaf"></i>
+                    <h3>天然原料</h3>
+                    <p>嚴選天然原料，無人工添加物，健康美味</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-clock"></i>
+                    <h3>快速製作</h3>
+                    <p>專業調製，3分鐘內完成，新鮮現做</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-heart"></i>
+                    <h3>用心服務</h3>
+                    <p>親切服務，客製化調整，滿足您的需求</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- 載入bs5 js (bundle) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/js/bootstrap.bundle.min.js"
-        integrity="sha512-Tc0i+vRogmX4NN7tuLbQfBxa8JkfUSAxSFVzmU31nVdHyiHElPPy2cWfFacmCJKw0VqovrzKhdd2TSTMdAxp2g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-    <!-- 載入jquery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-    <?php include 'footer.php';?>
-
+    <!-- 載入script.js -->
+    <script src="script.js"></script>
+    
+    <?php include 'footer.php'; ?>
 </body>
 
 </html>

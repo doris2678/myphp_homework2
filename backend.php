@@ -87,15 +87,15 @@
 
                     <?php
                     if(isset($_SESSION['admin'])):                   
-                    ?>                     
+                    ?>
                     <li><a class="dropdown-item" href="./api/admin_logout.php">登出</a></li>
                     <?php
                     else:
-                    ?>     
+                    ?>
                     <li><a class="dropdown-item" href="admin_login.php">登入</a></li>
                     <?php
                     endif;
-                    ?> 
+                    ?>
 
                 </ul>
             </div>
@@ -112,20 +112,20 @@
              ?>
             <div class="px-3 pb-2 fw-bold">管理選單</div>
             <a href="./backend/admin.php" target="contentFrame">帳號管理</a>
-            <a href="./backend/member.php" target="contentFrame">會員管理</a>            
+            <a href="./backend/member.php" target="contentFrame">會員管理</a>
             <!-- 可收合的子選單 -->
             <a data-bs-toggle="collapse" href="#productMenu" role="button" aria-expanded="false"
                 aria-controls="productMenu">
                 商品及訂單管理 ▾
             </a>
             <div class="collapse" id="productMenu">
-                <a href="./backend/items.php?table=items" target="contentFrame" class="ps-4">商品列表</a>                
+                <a href="./backend/items.php?table=items" target="contentFrame" class="ps-4">商品列表</a>
                 <a href="./backend/bd_query_order.php" target="contentFrame" class="ps-4">訂單查詢</a>
             </div>
-            <a class="nav-link" href="./api/admin_logout.php">登出</a>            
+            <a class="nav-link" href="./api/admin_logout.php">登出</a>
             <?php
               else:
-            ?>            
+            ?>
             <a href="admin_login.php">登入</a>
             <?php
               endif;
@@ -140,7 +140,7 @@
 
     <!-- Footer -->
     <div class="footer">
-        Copyright © 2025 Tieat. All Rights Reserved 泰好喝有限公司
+        <p>&copy; 2025 泰好喝有限公司 All rights reserved.</p>
     </div>
 
 </body>
