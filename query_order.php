@@ -148,65 +148,167 @@
 
             <?php
             // 檢查用戶是否已登入
-            if(isset($_SESSION['mem'])) {
-                $member_acc = $_SESSION['mem'];
-                
-                // 查詢該會員的訂單
-                $orders = $Order1->all(['acc' => $member_acc]);
-                
-                if(count($orders) > 0) {
-                    echo '<table class="order-table">';
-                    echo '<thead>';
-                    echo '<tr>';
-                    echo '<th>訂單編號</th>';
-                    echo '<th>訂購日期</th>';
-                    echo '<th>訂購人</th>';
-                    echo '<th>電話</th>';
-                    echo '<th>總金額</th>';                    
-                    echo '<th>操作</th>';
-                    echo '</tr>';
-                    echo '</thead>';
-                    echo '<tbody>';
+            if(isset($_SESSION['mem'])):
+                $acc = $_SESSION['mem'];
+                $table = 'order1';                
+             ?>
+                <table class="table table-bordered table-hover table-fixed">
+                <thead>
+                    <tr>
+                        <th style="width: 10%;">訂單編號</th>
+                        <th style="width: 10%;">日期</th>
+                        <th style="width: 10%;">訂購者姓名</th>
+                        <th style="width: 10%;">電話</th>
+                        <th style="width: 10%;">訂購金額</th>
+                        <th style="width: 20%;">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $all = count(${ucfirst($table)}->all(['acc'=>$acc]));
+                    $div = 8;
+                    $pages = ceil($all / $div);
+                    $now = $_GET['p'] ?? 1;
+                    $start = ($now - 1) * $div;
+                    $rows = ${ucfirst($table)}->all(['acc'=>$acc]," order by or_no desc limit $start,$div");
+                    foreach ($rows as $row):
+                    ?>
+                        <tr>
+                            <td><?= $row['or_no']; ?></td>
+                            <td><?= $row['date1']; ?></td>
+                            <td><?= $row['name']; ?></td>
+                            <td><?= $row['tel']; ?></td>
+                            <td><?= $row['amt']; ?></td>
+                            <td>
+                                <button class="btn btn-info view-details" data-or-no="<?= $row['or_no']; ?>">
+                                    <i class="fa-solid fa-eye"></i> 查詢明細
+                                </button>
+                                <!-- <a class="btn btn-danger" href="../api/delete.php?id=<?= $row['id']; ?>&table=<?= $table; ?>">
+                                    <i class="fa-solid fa-trash-can"></i> 刪除
+                                </a> -->
+                            </td>
+                        </tr>                  
+                    <?php                      
+                      endforeach;
+                    endif;
+
+                    if(!isset($_SESSION['mem'])):
+                    ?>    
+                        <div class="no-orders">';
+                          <i class="fas fa-user-lock"></i>';
+                          <p>請先登入會員以查看訂單記錄</p>';
+                        </div>
+                      <?php
+                       endif
+                       ?>
+                </tbody>
+            </table>
                     
-                    foreach($orders as $order) {                                              
-                        echo '<tr>';
-                        echo '<td>' . htmlspecialchars($order['or_no']) . '</td>';
-                        echo '<td>' . htmlspecialchars($order['date1']) . '</td>';
-                        echo '<td>' . htmlspecialchars($order['name']) . '</td>';
-                        echo '<td>' . htmlspecialchars($order['tel']) . '</td>';
-                        echo '<td>NT$ ' . number_format($order['amt']) . '</td>';                        
-                        echo '<td><a href="#" class="btn-details" onclick="viewOrderDetails(\'' . $order['or_no'] . '\')">查詢明細</a></td>';
-                        echo '</tr>';
-                    }
-                    
-                    echo '</tbody>';
-                    echo '</table>';
-                } else {
-                    echo '<div class="no-orders">';
-                    echo '<i class="fas fa-clipboard-list"></i>';
-                    echo '<p>您還沒有任何訂單記錄</p>';
-                    echo '<p>快去購物車下單吧！</p>';
-                    echo '</div>';
-                }
-            } else {
-                echo '<div class="no-orders">';
-                echo '<i class="fas fa-user-lock"></i>';
-                echo '<p>請先登入會員以查看訂單記錄</p>';
-                echo '</div>';
-            }
-            ?>
+                
         </div>
+
+            <!-- 分頁 -->    
+            <div class="fixed-footer">
+                <div class="container mt-3">
+                    <ul class="pagination justify-content-center">
+                        <?php if ($now - 1 > 0): ?>
+                            <li class="page-item"><a class="page-link" href="?p=<?= $now - 1; ?>"><</a></li>
+                        <?php endif; ?>
+
+                        <?php for ($i = 1; $i <= $pages; $i++): ?>
+                            <li class="page-item <?= ($now == $i) ? 'active' : ''; ?>">
+                                <a class="page-link" href="?p=<?= $i; ?>"><?= $i; ?></a>
+                            </li>
+                        <?php endfor; ?>
+
+                        <?php if ($now + 1 <= $pages): ?>
+                            <li class="page-item"><a class="page-link" href="?p=<?= $now + 1; ?>">></a></li>
+                        <?php endif; ?>
+                    </ul>
+                </div>
+            </div>
     </section>
+
+     <!-- 回傳訊息用 Modal -->
+        <div class="modal fade" id="resultModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center">訂單明細</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body text-center" id="modalMessage">
+                        <!-- 這裡放回傳訊息 -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     <?php include 'footer.php'; ?>
 
     <script>
-    // function viewOrderDetails(orderNo) {
-    //     // 這裡可以添加查看訂單詳情的邏輯
-    //     alert('查看訂單 ' + orderNo + ' 的詳情');
-    //     // 可以彈出模態框或跳轉到詳情頁面
-    // }
+        $(document).ready(function () {
+            $('.view-details').on('click', function () {
+                const or_no = $(this).data('or-no');
+                console.log('or_no:', or_no);
+
+                let url = '../api/get_order_details.php';
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: { or_no: or_no },
+                    dataType: "json",
+                    success: function (response) {
+                        $('#modalMessage').html('');
+
+                        let table = `
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>                                        
+                                        <th>品名</th>
+                                        <th>單價</th>
+                                        <th>數量</th>                                        
+                                        <th>金額</th>                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                        `;
+
+                        response.forEach((item, idx) => {
+                            table += `
+                                <tr>                                  
+                                    <td>${item.item_name}</td>
+                                    <td>${item.price}</td>
+                                    <td>${item.qty}</td>
+                                    <td>${item.price*item.qty}</td>
+                                </tr>
+                            `;
+                        });
+
+                        table += `
+                                </tbody>
+                            </table>
+                        `;
+
+                        $('#modalMessage').html(table);
+
+                        const modal = new bootstrap.Modal(document.getElementById('resultModal'));
+                        modal.show();
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('AJAX Error:', status, error);
+                        $('#modalMessage').text('無法載入訂單明細，請稍後再試。');
+                        const modal = new bootstrap.Modal(document.getElementById('resultModal'));
+                        modal.show();
+                    }
+                });
+            });
+        });
     </script>
+    
 </body>
 
 </html>

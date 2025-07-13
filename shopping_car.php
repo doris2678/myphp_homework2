@@ -175,7 +175,7 @@
                         $table='items';
                         $rows=${ucfirst($table)}->all();
                         foreach ($rows as $row): 
-                    ?>
+                        ?>
                             <tr>
                                 <td><span class="item_no"><?=$row['item_no'];?></span></td>
                                 <td><span class="item_name"><?=$row['item_name'];?></span></td>
@@ -219,8 +219,10 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
+    
     <?php include 'footer.php'; ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/js/bootstrap.bundle.min.js"
         integrity="sha512-Tc0i+vRogmX4NN7tuLbQfBxa8JkfUSAxSFVzmU31nVdHyiHElPPy2cWfFacmCJKw0VqovrzKhdd2TSTMdAxp2g=="

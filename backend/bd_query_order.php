@@ -73,7 +73,7 @@ include_once "../api/db.php";
                     $pages = ceil($all / $div);
                     $now = $_GET['p'] ?? 1;
                     $start = ($now - 1) * $div;
-                    $rows = ${ucfirst($table)}->all(" limit $start,$div");
+                    $rows = ${ucfirst($table)}->all(" order by or_no desc limit $start,$div");
                     foreach ($rows as $row):
                     ?>
                         <tr>
@@ -164,11 +164,11 @@ include_once "../api/db.php";
                         let table = `
                             <table class="table table-bordered">
                                 <thead>
-                                    <tr>
-                                        <th>品號</th>
+                                    <tr>                                        
                                         <th>品名</th>
                                         <th>單價</th>
                                         <th>數量</th>                                        
+                                        <th>金額</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -176,12 +176,12 @@ include_once "../api/db.php";
 
                         response.forEach((item, idx) => {
                             table += `
-                                <tr>
-                                    <td>${item.item_no}</td>
+                                <tr>                                    
                                     <td>${item.item_name}</td>
                                     <td>${item.price}</td>
                                     <td>${item.qty}</td>
-                                </tr>
+                                    <td>${item.price*item.qty}</td>
+                                    </tr>
                             `;
                         });
 
