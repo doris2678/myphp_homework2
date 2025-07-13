@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2025-07-12 15:17:25
+-- 產生時間： 2025-07-13 16:16:43
 -- 伺服器版本： 10.4.32-MariaDB
 -- PHP 版本： 8.2.12
 
@@ -69,6 +69,27 @@ INSERT INTO `bottom` (`id`, `text`) VALUES
 -- --------------------------------------------------------
 
 --
+-- 資料表結構 `first_img`
+--
+
+CREATE TABLE `first_img` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `img` text NOT NULL,
+  `sh` int(1) UNSIGNED NOT NULL,
+  `created_time` date NOT NULL DEFAULT current_timestamp(),
+  `updated_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- 傾印資料表的資料 `first_img`
+--
+
+INSERT INTO `first_img` (`id`, `img`, `sh`, `created_time`, `updated_time`) VALUES
+(1, 'drink-1.jpg', 1, '2025-07-13', '2025-07-13 14:09:55');
+
+-- --------------------------------------------------------
+
+--
 -- 資料表結構 `items`
 --
 
@@ -96,8 +117,8 @@ INSERT INTO `items` (`id`, `item_no`, `item_name`, `price`, `cost`, `img`, `bg_d
 (15, 'A-004', '阿薩姆紅茶', 40, 20, 'A-003.jpg', '2025-07-01', '0000-00-00', '2025-07-12', '2025-07-12 07:57:08'),
 (16, 'A-005', '四季春青茶', 35, 15, 'A-001.jpg', '2025-07-01', '0000-00-00', '2025-07-12', '2025-07-12 07:57:16'),
 (17, 'A-006', '四季春青茶', 40, 20, 'A-001.jpg', '2025-07-01', '0000-00-00', '2025-07-12', '2025-07-12 07:57:22'),
-(18, 'A-007', '黃金烏龍', 35, 15, 'item001.jpg', '2025-07-01', '0000-00-00', '2025-07-12', '2025-07-12 07:57:32'),
-(19, 'A-008', '黃金烏龍', 40, 20, 'item001.jpg', '2025-07-01', '0000-00-00', '2025-07-12', '2025-07-12 07:57:40'),
+(18, 'A-007', '黃金烏龍', 35, 15, '', '2025-07-01', '0000-00-00', '2025-07-12', '2025-07-13 11:32:40'),
+(19, 'A-008', '黃金烏龍', 40, 20, '', '2025-07-01', '0000-00-00', '2025-07-12', '2025-07-13 11:33:01'),
 (20, 'A-009', '檸檬綠', 50, 30, '', '2025-07-01', NULL, '2025-07-12', '2025-07-12 02:59:56'),
 (21, 'A-010', '檸檬綠', 60, 40, '', '2025-07-01', NULL, '2025-07-12', '2025-07-12 02:59:56'),
 (22, 'A-011', '梅子綠', 50, 30, '', '2025-07-01', NULL, '2025-07-12', '2025-07-12 02:59:56'),
@@ -189,7 +210,9 @@ INSERT INTO `items` (`id`, `item_no`, `item_name`, `price`, `cost`, `img`, `bg_d
 (110, 'A-099', '可可芭蕾', 50, 30, '', '2025-07-01', NULL, '2025-07-12', '2025-07-12 02:59:56'),
 (111, 'A-100', '可可芭蕾', 65, 45, '', '2025-07-01', NULL, '2025-07-12', '2025-07-12 02:59:56'),
 (112, 'A-101', '可可芭蕾拿鐵', 55, 35, '', '2025-07-01', NULL, '2025-07-12', '2025-07-12 02:59:56'),
-(113, 'A-102', '可可芭蕾拿鐵', 75, 55, '', '2025-07-01', NULL, '2025-07-12', '2025-07-12 02:59:56');
+(113, 'A-102', '可可芭蕾拿鐵', 75, 55, '', '2025-07-01', NULL, '2025-07-12', '2025-07-12 02:59:56'),
+(115, 'A-103', '芒果冰沙', 70, 50, '', '2025-07-10', NULL, '2025-07-13', '2025-07-13 01:53:22'),
+(116, 'A-104', '蜂蜜檸檬茶', 50, 30, '', '2025-07-01', NULL, '2025-07-13', '2025-07-13 01:59:27');
 
 -- --------------------------------------------------------
 
@@ -214,19 +237,6 @@ CREATE TABLE `member` (
 
 INSERT INTO `member` (`id`, `acc`, `pw`, `name`, `email`, `birthday`, `created_time`, `updated_time`) VALUES
 (1, 'doris01', '1234', '黃芯', 'dorishsh2678@gmail.com', '2000-02-02', '2025-07-05 06:14:37', '2025-07-12 07:01:06');
-
--- --------------------------------------------------------
-
---
--- 資料表結構 `menu`
---
-
-CREATE TABLE `menu` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `text` text DEFAULT NULL,
-  `href` text DEFAULT NULL,
-  `sh` int(1) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -276,7 +286,12 @@ INSERT INTO `order1` (`id`, `date1`, `or_no`, `acc`, `name`, `amt`, `tel`, `crea
 (62, '2025-07-11', '202507110007', 'doris01', '黃芯', 35, '', '2025-07-11 13:34:42', '2025-07-11 13:34:42'),
 (63, '2025-07-11', '202507110008', 'doris01', '黃芯', 65, '', '2025-07-11 13:34:47', '2025-07-11 13:34:47'),
 (64, '2025-07-11', '202507110009', 'doris01', '黃芯', 65, '', '2025-07-11 14:03:17', '2025-07-11 14:03:17'),
-(65, '2025-07-11', '202507110010', 'doris01', '黃芯', 115, '0912345678', '2025-07-11 14:05:00', '2025-07-11 14:05:00');
+(65, '2025-07-11', '202507110010', 'doris01', '黃芯', 115, '0912345678', '2025-07-11 14:05:00', '2025-07-11 14:05:00'),
+(66, '2025-07-13', '202507130001', 'doris05', 'test05', 0, '1111', '2025-07-13 07:40:50', '2025-07-13 07:40:50'),
+(67, '2025-07-13', '202507130002', 'doris01', '黃芯', 35, 'dd', '2025-07-13 07:50:08', '2025-07-13 07:50:08'),
+(68, '2025-07-13', '202507130003', 'doris01', '黃芯', 265, 'aaaa', '2025-07-13 07:53:37', '2025-07-13 07:53:37'),
+(69, '2025-07-13', '202507130004', 'doris01', '黃芯', 35, '', '2025-07-13 11:38:45', '2025-07-13 11:38:45'),
+(70, '2025-07-13', '202507130005', 'doris01', '黃芯', 35, '', '2025-07-13 11:39:08', '2025-07-13 11:39:08');
 
 -- --------------------------------------------------------
 
@@ -350,7 +365,29 @@ INSERT INTO `order2` (`id`, `or_no`, `item_no`, `item_name`, `price`, `qty`, `cr
 (112, '202507110009', 'a005', '綠茶', 30, 1, '2025-07-11 14:03:17', '2025-07-11 14:03:17'),
 (113, '202507110010', 'a001', '拿鐵', 50, 1, '2025-07-11 14:05:00', '2025-07-11 14:05:00'),
 (114, '202507110010', 'a002', '紅茶', 35, 1, '2025-07-11 14:05:00', '2025-07-11 14:05:00'),
-(115, '202507110010', 'a005', '綠茶', 30, 1, '2025-07-11 14:05:00', '2025-07-11 14:05:00');
+(115, '202507110010', 'a005', '綠茶', 30, 1, '2025-07-11 14:05:00', '2025-07-11 14:05:00'),
+(116, '202507130001', 'A-001', '茉莉綠茶', 35, 1, '2025-07-13 07:40:50', '2025-07-13 07:40:50'),
+(117, '202507130001', 'A-002', '茉莉綠茶', 40, 1, '2025-07-13 07:40:50', '2025-07-13 07:40:50'),
+(118, '202507130002', 'A-001', '茉莉綠茶', 35, 1, '2025-07-13 07:50:08', '2025-07-13 07:50:08'),
+(119, '202507130003', 'A-102', '可可芭蕾拿鐵', 75, 1, '2025-07-13 07:53:37', '2025-07-13 07:53:37'),
+(120, '202507130003', 'A-103', '芒果冰沙', 70, 2, '2025-07-13 07:53:37', '2025-07-13 07:53:37'),
+(121, '202507130003', 'A-104', '蜂蜜檸檬茶', 50, 1, '2025-07-13 07:53:37', '2025-07-13 07:53:37'),
+(122, '202507130004', 'A-003', '阿薩姆紅茶', 35, 1, '2025-07-13 11:38:45', '2025-07-13 11:38:45'),
+(123, '202507130005', 'A-003', '阿薩姆紅茶', 35, 1, '2025-07-13 11:39:08', '2025-07-13 11:39:08');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `second_img`
+--
+
+CREATE TABLE `second_img` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `img` text NOT NULL,
+  `sh` int(1) UNSIGNED NOT NULL,
+  `created_time` date NOT NULL DEFAULT current_timestamp(),
+  `updated_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -368,7 +405,7 @@ CREATE TABLE `set_no` (
 --
 
 INSERT INTO `set_no` (`id`, `or_no`) VALUES
-(1, '202507110010');
+(1, '202507130005');
 
 -- --------------------------------------------------------
 
@@ -407,6 +444,12 @@ ALTER TABLE `bottom`
   ADD PRIMARY KEY (`id`);
 
 --
+-- 資料表索引 `first_img`
+--
+ALTER TABLE `first_img`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- 資料表索引 `items`
 --
 ALTER TABLE `items`
@@ -419,12 +462,6 @@ ALTER TABLE `member`
   ADD PRIMARY KEY (`id`);
 
 --
--- 資料表索引 `menu`
---
-ALTER TABLE `menu`
-  ADD PRIMARY KEY (`id`);
-
---
 -- 資料表索引 `order1`
 --
 ALTER TABLE `order1`
@@ -434,6 +471,12 @@ ALTER TABLE `order1`
 -- 資料表索引 `order2`
 --
 ALTER TABLE `order2`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- 資料表索引 `second_img`
+--
+ALTER TABLE `second_img`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -456,7 +499,7 @@ ALTER TABLE `title`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `bottom`
@@ -465,34 +508,40 @@ ALTER TABLE `bottom`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- 使用資料表自動遞增(AUTO_INCREMENT) `first_img`
+--
+ALTER TABLE `first_img`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- 使用資料表自動遞增(AUTO_INCREMENT) `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `member`
 --
 ALTER TABLE `member`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `menu`
---
-ALTER TABLE `menu`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `order1`
 --
 ALTER TABLE `order1`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `order2`
 --
 ALTER TABLE `order2`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `second_img`
+--
+ALTER TABLE `second_img`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `set_no`
