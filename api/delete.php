@@ -15,6 +15,12 @@ switch($table){
     case "items":
         $url=("../backend/items.php");
     break;
+    case "first_img":            
+        $url=("../backend/first_img.php");
+    break;
+    case "second_img":                
+        $url=("../backend/second_img.php");
+    break;   
 
     default:        
         $url=("../backend.php");

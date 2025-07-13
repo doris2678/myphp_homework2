@@ -19,7 +19,14 @@ switch($table){
     case "items":        
         $url=("../backend/items.php");
     break;
-
+    case "first_img":        
+        $_POST['sh']=1;
+        $url=("../backend/first_img.php");
+    break;
+    case "second_img":        
+        $_POST['sh']=1;
+        $url=("../backend/second_img.php");
+    break;    
     default:        
         $url=("../index.php");
 

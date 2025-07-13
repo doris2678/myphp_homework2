@@ -39,6 +39,13 @@ switch($table){
         $row['ed_date']=$_POST['ed_date'];                
         $url=("../backend/items.php");
     break;
+    case "first_img":            
+        $url=("../backend/first_img.php");
+    break;
+    case "second_img":                
+        $url=("../backend/second_img.php");
+    break;   
+
 
     default:        
         $url=("../index.php");
