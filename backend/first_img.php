@@ -71,7 +71,7 @@
             <table class="table table-bordered table-hover table-fixed">
                 <thead>
                     <tr>
-                        <th style="width: 10%;">首頁輪播圖片</th>
+                        <th style="width: 40%;">首頁輪播圖片</th>
                         <th style="width: 10%;">是否顯示</th>
                         <th style="width: 20%;">操作</th>
                     </tr>
@@ -88,8 +88,6 @@
                      foreach ($rows as $row): 
                     ?>
                     <tr>
-                        <td><?=$row['img'];?></td>
-                        <td><?=$row['sh'];?></td>
                         <td>
                             <img src="../images/<?=$row['img'];?>" style='max-width: 200px; max-height: 200px;'>
                         </td>

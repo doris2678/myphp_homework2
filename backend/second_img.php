@@ -9,7 +9,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>首頁商品介紹播圖片管理</title>
+    <title>首頁商品介紹圖片管理</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/css/bootstrap.min.css"
         integrity="sha512-fw7f+TcMjTb7bpbLJZlP8g2Y4XcCyFZW8uy8HsRZsH/SwbMw0plKHFHr99DN3l04VsYNwvzicUX/6qurvIxbxw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -63,16 +63,15 @@
     <main>
         <div class="container-fluid mt-3">
 
-            <h2 class="text-center">首頁商品介紹播圖片管理</h2>
-            <?php $table='items'?>
-            <div class='btns'><a class="btn btn-primary" href="add_items.php?table=<?=$table;?>"><i
+            <h2 class="text-center">首頁商品介紹圖片管理</h2>
+            <?php $table='second_img'?>
+            <div class='btns'><a class="btn btn-primary" href="add_secondimg.php?table=<?=$table;?>"><i
                         class="fa-regular fa-pen-to-square"></i>新增</a>
             </div>
             <table class="table table-bordered table-hover table-fixed">
                 <thead>
                     <tr>
-                        <th style="width: 10%;">首頁商品介紹播圖片</th>
-                        <th style="width: 20%;">圖片</th>
+                        <th style="width: 40%;">首頁商品介紹圖片</th>
                         <th style="width: 10%;">是否顯示</th>
                         <th style="width: 20%;">操作</th>
                     </tr>
@@ -89,17 +88,14 @@
                      foreach ($rows as $row): 
                     ?>
                     <tr>
-                        <td><?=$row['img'];?></td>
-                        <td><?=$row['sh'];?></td>
                         <td>
                             <img src="../images/<?=$row['img'];?>" style='max-width: 200px; max-height: 200px;'>
                         </td>
                         <td>
                             <input type="checkbox" name="sh" value="<?=$row['id'];?>" <?=($row['sh']==1)?"checked":"";?>>
                         </td>
-
                         <td>
-                            <a class="btn btn-warning" href="update_firstimg.php?id=<?=$row['id'];?>&table=<?=$table;?>">
+                            <a class="btn btn-warning" href="update_secondimg.php?id=<?=$row['id'];?>&table=<?=$table;?>">
                                 <i class="fa-solid fa-wrench"></i>修改</a>
                             <a class="btn btn-danger" href="../api/delete.php?id=<?=$row['id'];?>&table=<?=$table;?>"><i
                                     class="fa-solid fa-trash-can"></i>刪除</a>
