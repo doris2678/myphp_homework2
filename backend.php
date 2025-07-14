@@ -113,8 +113,17 @@
             <div class="px-3 pb-2 fw-bold">管理選單</div>
             <a href="./backend/admin.php" target="contentFrame">帳號管理</a>
             <a href="./backend/member.php" target="contentFrame">會員管理</a>
-            <a href="./backend/first_img.php?table=first_img" target="contentFrame">首頁輪播圖片管理</a>
-            <a href="./backend/second_img.php?table=second_img" target="contentFrame">首頁商品介紹播圖片管理</a>
+
+            <!-- 可收合的子選單 -->
+            <a data-bs-toggle="collapse" href="#photoMenu" role="button" aria-expanded="false"
+                aria-controls="photoMenu">
+                首頁圖片管理 ▾
+            </a>
+            <div class="collapse" id="photoMenu">
+                <a href="./backend/first_img.php?table=first_img" target="contentFrame" class="ps-4">輪播圖片管理</a>
+                <a href="./backend/second_img.php?table=second_img" target="contentFrame" class="ps-4">商品介紹圖片管理</a>
+            </div>
+            
             <!-- 可收合的子選單 -->
             <a data-bs-toggle="collapse" href="#productMenu" role="button" aria-expanded="false"
                 aria-controls="productMenu">
@@ -124,6 +133,7 @@
                 <a href="./backend/items.php?table=items" target="contentFrame" class="ps-4">商品列表</a>
                 <a href="./backend/bd_query_order.php" target="contentFrame" class="ps-4">訂單查詢</a>
             </div>
+
             <a class="nav-link" href="./api/admin_logout.php">登出</a>
             <?php
               else:

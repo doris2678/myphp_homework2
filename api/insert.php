@@ -17,6 +17,7 @@ switch($table){
         $url=("../index.php");
     break;
     case "items":        
+        $_POST['sh']=1;
         $url=("../backend/items.php");
     break;
     case "first_img":        

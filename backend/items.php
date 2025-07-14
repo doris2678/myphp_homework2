@@ -54,6 +54,9 @@
     td{
         text-align:center;
     }
+    .noclick {
+      pointer-events: none;
+   }
     </style>
 </head>
 
@@ -72,13 +75,14 @@
                 <thead>
                     <tr>
                         <th style="width: 10%;">商品編號</th>
-                        <th style="width: 20%;">商品名稱</th>
+                        <th style="width: 10%;">商品名稱</th>
                         <th style="width: 10%;">價格</th>
-                        <th style="width: 10%;">成本</th>
+                        <th style="width: 10%;">成本</th>                        
                         <th style="width: 10%;">上架日</th>
                         <th style="width: 10%;">下架日</th>
                         <th style="width: 10%;">商品圖</th>
-                        <th style="width: 20%;">操作</th>
+                        <th style="width: 10%;">是否顯示</th>
+                        <th style="width: 10%;">操作</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -98,9 +102,12 @@
                         <td><?=$row['price'];?></td>
                         <td><?=$row['cost'];?></td>
                         <td><?=$row['bg_date'];?></td>
-                        <td><?=$row['ed_date'];?></td>
+                        <td><?=$row['ed_date'];?></td>                      
                         <td>
                             <img src="../images/<?=$row['img'];?>" style='max-width: 200px; max-height: 200px;'>
+                        </td>
+                        <td>                            
+                          <input type="checkbox" class="noclick" name="sh" value="<?=$row['id'];?>" <?=($row['sh']==1)?"checked":"";?>>
                         </td>
                         <td>
                             <a class="btn btn-warning" href="update_items.php?id=<?=$row['id'];?>&table=<?=$table;?>">

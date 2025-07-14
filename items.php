@@ -127,7 +127,7 @@
             <div class="items-grid">
                 <?php                                    
                      $table='items';
-                     $rows=${ucfirst($table)}->all();         
+                     $rows=${ucfirst($table)}->all(" where sh=1 ");         
                     foreach ($rows as $row): 
                 ?>
                 <div class="item-card">
@@ -137,10 +137,7 @@
                     <div class="item-info">
                         <div class="item-name">品名: <?=$row['item_name'];?></div>
                         <h3><?=$row['item_name'];?></h3>
-                        <div class="item-price">NT$ <?=$row['price'];?></div>
-                        <!-- <button class="add-to-cart-btn" onclick="addToCart('<?=$row['item_no'];?>', '<?=$row['item_name'];?>', <?=$row['price'];?>)">
-                            <i class="fas fa-shopping-cart"></i> 
-                        </button> -->
+                        <div class="item-price">NT$ <?=$row['price'];?></div>          
                     </div>
                 </div>
                 <?php
@@ -152,13 +149,6 @@
 
     <?php include 'footer.php'; ?>
 
-    <!-- <script>
-    function addToCart(itemNo, itemName, price) {
-        // 這裡可以添加加入購物車的邏輯
-        alert('已將 ' + itemName + ' 加入購物車！');
-        // 可以重定向到購物車頁面或更新購物車數量
-    }
-    </script> -->
-</body>
+   </body>
 
 </html>

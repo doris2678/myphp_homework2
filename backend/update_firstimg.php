@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>編輯首頁輪播圖片</title>
+    <title>編輯首頁商品介紹圖片</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/css/bootstrap.min.css"
         integrity="sha512-fw7f+TcMjTb7bpbLJZlP8g2Y4XcCyFZW8uy8HsRZsH/SwbMw0plKHFHr99DN3l04VsYNwvzicUX/6qurvIxbxw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -22,7 +22,7 @@
 
     <main>
         <div class="container mt-3">
-            <h2 class="text-center">編輯首頁輪播圖片</h2>
+            <h2 class="text-center">編輯首頁商品介紹圖片</h2>
             <?php
                 $table=$_GET['table'];
                 $db=${ucfirst($table)};
@@ -36,8 +36,18 @@
             <form action="../api/update.php" method="post" enctype="multipart/form-data">
                 
                 <div class="mb-3 mt-3">
+                    <label for="pd1">商品名稱:</label>
+                    <input type="text" class="form-control" id="pd1" name="pd1" value="<?=$row['pd1'];?>">
+                </div>
+
+                <div class="mb-3 mt-3">
+                    <label for="pd2">商品描述:</label>
+                    <input type="text" class="form-control" id="pd2" name="pd2" value="<?=$row['pd2'];?>">
+                </div>
+
+                <div class="mb-3 mt-3">
                     <label for="sh">是否顯示:</label>
-                    <input type="checkbox" class="form-control" name="sh" value="<?=$row['id'];?>" <?=($row['sh']==1)?"checked":"";?>>
+                    <input type="checkbox" name="sh" value="<?=$row['id'];?>" <?=($row['sh']==1)?"checked":"";?>>
                 </div>
 
                 <div class="mb-3 mt-3">

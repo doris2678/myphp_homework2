@@ -21,7 +21,17 @@
     <main>
         <div class="container mt-3">
             <h2>首頁商品介紹圖片新增</h2>
-            <form action="../api/insert.php" method="post" enctype="multipart/form-data">              
+            <form action="../api/insert.php" method="post" enctype="multipart/form-data"> 
+                 <div class="mb-3 mt-3">
+                    <label for="pd1">商品名稱 :</label>
+                    <input type="text" class="form-control" id="pd1" name="pd1">
+                </div>
+
+                <div class="mb-3 mt-3">
+                    <label for="pd2">商品描述:</label>
+                    <input type="text" class="form-control" id="pd2" name="pd2">
+                </div>
+             
                 <div class="mb-3 mt-3 d-flex align-items-center">
                     <label for="img" class="me-2 mb-0" style="white-space: nowrap;">新增圖片：</label>
                     <input type="file" class="form-control" id="img" name="img" style="width: auto;">

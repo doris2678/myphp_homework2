@@ -173,7 +173,7 @@
                         <tbody>
                             <?php 
                         $table='items';
-                        $rows=${ucfirst($table)}->all();
+                        $rows=${ucfirst($table)}->all(" where sh=1 ");
                         foreach ($rows as $row): 
                         ?>
                             <tr>

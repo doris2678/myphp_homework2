@@ -54,6 +54,11 @@
     td{
         text-align:center;
     }
+    
+   .noclick {
+      pointer-events: none;
+   }
+</style>
     </style>
 </head>
 
@@ -71,7 +76,9 @@
             <table class="table table-bordered table-hover table-fixed">
                 <thead>
                     <tr>
-                        <th style="width: 40%;">首頁輪播圖片</th>
+                        <th style="width: 20%;">產品名稱</th>
+                        <th style="width: 30%;">產品描述</th>
+                        <th style="width: 10%;">首頁輪播圖片</th>                        
                         <th style="width: 10%;">是否顯示</th>
                         <th style="width: 20%;">操作</th>
                     </tr>
@@ -88,11 +95,13 @@
                      foreach ($rows as $row): 
                     ?>
                     <tr>
+                        <td><?=$row['pd1'];?></td>
+                        <td><?=$row['pd2'];?></td>
                         <td>
                             <img src="../images/<?=$row['img'];?>" style='max-width: 200px; max-height: 200px;'>
                         </td>
-                        <td>
-                            <input type="checkbox" name="sh" value="<?=$row['id'];?>" <?=($row['sh']==1)?"checked":"";?>>
+                        <td>                            
+                          <input type="checkbox" class="noclick" name="sh" value="<?=$row['id'];?>" <?=($row['sh']==1)?"checked":"";?>>
                         </td>
                         <td>
                             <a class="btn btn-warning" href="update_firstimg.php?id=<?=$row['id'];?>&table=<?=$table;?>">

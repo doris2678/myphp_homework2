@@ -37,12 +37,19 @@ switch($table){
         $row['cost']=$_POST['cost'];                
         $row['bg_date']=$_POST['bg_date'];                
         $row['ed_date']=$_POST['ed_date'];                
+        $row['sh']=($_POST['sh']==$_POST['id'])?1:0;
         $url=("../backend/items.php");
     break;
     case "first_img":            
+        $row['pd1']=$_POST['pd1'];        
+        $row['pd2']=$_POST['pd2'];
+        $row['sh']=($_POST['sh']==$_POST['id'])?1:0;
         $url=("../backend/first_img.php");
     break;
-    case "second_img":                
+    case "second_img": 
+        $row['pd1']=$_POST['pd1'];        
+        $row['pd2']=$_POST['pd2'];
+        $row['sh']=($_POST['sh']==$_POST['id'])?1:0;         
         $url=("../backend/second_img.php");
     break;   
 
