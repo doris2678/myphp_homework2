@@ -20,7 +20,7 @@
 
     <main>
         <div class="container mt-3">
-            <h2>商品管理</h2>
+            <h2 class="text-center">商品管理</h2>
             <form action="../api/insert.php" method="post" enctype="multipart/form-data">
                 <div class="mb-3 mt-3">
                     <label for="item_no">商品編號:</label>

@@ -62,7 +62,7 @@
             <div class="products-grid">
                 <?php                                    
                     $table='second_img';
-                    $rows=${ucfirst($table)}->all(" where sh=1");         
+                    $rows=${ucfirst($table)}->all(" where sh=1 order by id desc");         
                     foreach ($rows as $row): 
                 ?>
 

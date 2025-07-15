@@ -7,8 +7,7 @@ $mem=$Member->count($_POST);
 if($mem){
    //登入成功
    session_start();
-   $_SESSION['mem']=$_POST['acc'];
-   setcookie("mem",$_POST['acc']);
+   $_SESSION['mem']=$_POST['acc'];  
    to("../main.php");
 }else{
     //登入失敗

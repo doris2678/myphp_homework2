@@ -20,7 +20,7 @@
 
     <main>
         <div class="container mt-3">
-            <h2>帳號管理</h2>
+            <h2 class="text-center">帳號管理</h2>
             <form action="../api/insert.php" method="post">
                 <div class="mb-3 mt-3">
                     <label for="acc">帳號:</label>

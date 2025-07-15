@@ -22,7 +22,7 @@
 
     <main>
         <div class="container mt-3">
-            <h2>編輯會員資料</h2>
+            <h2 class="text-center">編輯會員資料</h2>
             <?php
                 $table=$_GET['table'];
                 $db=${ucfirst($table)};

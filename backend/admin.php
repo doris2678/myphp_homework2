@@ -13,72 +13,90 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../style.css">
     <style>
-    body {
-        background: linear-gradient(135deg, #f3e5f5 0%, #fff8e1 100%);
-        min-height: 100vh;
-        font-family: 'Noto Sans TC', sans-serif;
-    }
-    .admin-card {
-        max-width: 700px;
-        margin: 60px auto 0 auto;
+    .table-fixed {
+        table-layout: fixed;
+        width: 100%;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.08);
         background: #fff;
-        border-radius: 18px;
-        box-shadow: 0 8px 32px rgba(44,85,48,0.10);
-        padding: 2.5rem 2rem 2rem 2rem;
     }
-    .admin-title {
+    .table-fixed th {
+        background: #3b5998;
+        color: #fff;
+        font-weight: bold;
+        border-bottom: 2px solid #2d4373;
+        font-size: 1.08rem;
+    }
+    .table-fixed th,
+    .table-fixed td {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
         text-align: center;
-        color: #2c5530;
-        font-weight: 700;
-        margin-bottom: 2rem;
-        letter-spacing: 2px;
-        font-size: 2rem;
+        vertical-align: middle;
+        padding: 12px 8px;
     }
-    .btns {
-        text-align: right;
-        margin-bottom: 1rem;
+    .table-fixed tbody tr {
+        transition: background 0.2s;
+    }
+    .table-fixed tbody tr:hover {
+        background: #f0f4fa;
+    }
+    .btn {
+        border-radius: 8px !important;
+        box-shadow: 0 2px 8px rgba(59,89,152,0.08);
+        transition: background 0.2s, box-shadow 0.2s;
+        font-weight: 500;
+    }
+    .btn-warning {
+        background: #ffb347;
+        border: none;
+        color: #fff;
+    }
+    .btn-warning:hover {
+        background: #ff9800;
+        color: #fff;
+        box-shadow: 0 4px 16px rgba(255,152,0,0.12);
+    }
+    .btn-danger {
+        background: #e74c3c;
+        border: none;
+        color: #fff;
+    }
+    .btn-danger:hover {
+        background: #c0392b;
+        color: #fff;
+        box-shadow: 0 4px 16px rgba(231,76,60,0.12);
     }
     .btn-primary {
-        background: linear-gradient(135deg, #2c5530, #4a7c59);
+        background: #3b5998;
         border: none;
-        font-weight: 600;
-        border-radius: 8px;
-        font-size: 1.1rem;
-        padding: 8px 24px;
-        transition: all 0.2s;
+        color: #fff;
     }
     .btn-primary:hover {
-        background: #2c5530;
-    }
-    .btn-warning, .btn-danger {
-        border-radius: 8px;
-        font-weight: 600;
-        font-size: 1rem;
-        margin-right: 0.5rem;
-    }
-    .table th {
-        background: linear-gradient(135deg, #2c5530, #4a7c59);
+        background: #2d4373;
         color: #fff;
-        text-align: center;
-        vertical-align: middle;
+        box-shadow: 0 4px 16px rgba(59,89,152,0.12);
     }
-    .table td {
-        text-align: center;
-        vertical-align: middle;
-        background: #f8f9fa;
+    th,
+    td{
+        text-align:center;
     }
     </style>
+
 </head>
 <body>
-<div class="admin-card">
-    <h2 class="admin-title">帳號管理</h2>
+<div class="container-fluid mt-3">
+    <main>
+    <h2 class="text-center">帳號管理</h2>
     <?php $table='admin'?>
     <div class='btns'>
         <a class="btn btn-primary" href="add_admin.php?table=<?=$table;?>">
             <i class="fa-regular fa-pen-to-square"></i> 新增
         </a>
     </div>
-    <table class="table table-bordered table-hover">
+    <table class="table table-bordered table-hover table-fixed">
         <thead>
             <tr>
                 <th>帳號</th>
@@ -105,6 +123,7 @@
         </tbody>
     </table>
 </div>
+</main>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/js/bootstrap.bundle.min.js"
     integrity="sha512-Tc0i+vRogmX4NN7tuLbQfBxa8JkfUSAxSFVzmU31nVdHyiHElPPy2cWfFacmCJKw0VqovrzKhdd2TSTMdAxp2g=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>

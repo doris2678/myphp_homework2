@@ -75,7 +75,8 @@
     <section class="register-section">
         <div class="register-container">
             <h2 class="register-title">會員註冊</h2>
-            <form action="./api/insert.php" method="post">
+            <!-- <form action="./api/insert.php" method="post"> -->
+            <form>
                 <div class="mb-4">
                     <label for="name" class="form-label">使用者名稱</label>
                     <input type="text" class="form-control" id="name" name="name" required>
@@ -102,7 +103,8 @@
                 <input type="hidden" name="table" value="<?=$table;?>">
 
                 <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                    <button type="submit" class="btn btn-primary">註冊</button>
+                    <!-- <button type="submit" class="btn btn-primary">註冊</button> -->
+                    <input type="button" class="btn btn-primary" value="註冊" onclick="reg()">
                     <button type="reset" class="btn btn-primary">重置</button>
                 </div>
             </form>
@@ -110,7 +112,38 @@
     </section>
 
     <?php include 'footer.php'; ?>
+    <script>
+    function reg() {
+        let data = {
+            acc: $("#acc").val(),
+            pw: $("#pw").val(),
+            name: $("#name").val(),
+            birthday: $("#birthday").val(),
+            email: $("#email").val()
+        }
 
+        if (data.acc == '' || data.pw == '' || data.name == '' || data.email == '') {
+            alert("不可空白");
+        } else {
+            $.get("./api/chk_acc.php", data, (res) => {
+                if (parseInt(res)) {
+                    alert("帳號重複")
+                } else {
+                    $.post("./api/reg.php", data, (res) => {
+                        console.log(res);
+                        if (parseInt(res)) {
+                            alert("註冊成功，歡迎加入")
+                            location.href = "login.php";
+                        } else {
+                            alert("註冊失敗，請稍後再試")
+                        }
+                    })
+                }
+            })
+        }
+
+    }
+    </script>
 </body>
 
 </html>
