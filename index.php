@@ -73,7 +73,11 @@
                     <div class="product-info">
                         <h3><?=$row['pd1'];?></h3>
                         <p><?=$row['pd2'];?></p>
-                        <a href="shopping_car.php"><button class="order-btn">我要購買</button></a>
+                        <?php
+                         if(isset($_SESSION['mem'])){
+                          echo "<a href='shopping_car.php'><button class='order-btn'>我要購買</button></a>";
+                         };
+                        ?>                        
                     </div>
                 </div>
                  <?php
@@ -82,13 +86,6 @@
             </div>
         </div>
     </section>
-
-
-
-
-
-
-
 
     <!-- 特色介紹 -->
     <section class="features">
@@ -115,7 +112,6 @@
 
     <!-- 載入script.js -->
     <script src="script.js"></script>
-
     <?php include 'footer.php'; ?>
 </body>
 
