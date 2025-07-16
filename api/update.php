@@ -35,8 +35,6 @@ switch($table){
         $row['item_name']=$_POST['item_name'];
         $row['price']=$_POST['price'];        
         $row['cost']=$_POST['cost'];                
-        $row['bg_date']=$_POST['bg_date'];                
-        $row['ed_date']=$_POST['ed_date'];                
         $row['sh']=($_POST['sh']==$_POST['id'])?1:0;
         $url=("../backend/items.php");
     break;

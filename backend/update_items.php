@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/css/bootstrap.min.css"
         integrity="sha512-fw7f+TcMjTb7bpbLJZlP8g2Y4XcCyFZW8uy8HsRZsH/SwbMw0plKHFHr99DN3l04VsYNwvzicUX/6qurvIxbxw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- <link rel="stylesheet" href="../css/style.css"> -->
+    <link rel="stylesheet" href="../css/style2.css">
 </head>
 
 <body>
@@ -53,16 +53,6 @@
                 <div class="mb-3 mt-3">
                     <label for="cost">成本:</label>
                     <input type="number" class="form-control" id="cost" name="cost" value="<?=$row['cost'];?>">
-                </div>
-
-                <div class="mb-3 mt-3">
-                    <label for="bg_date">上架日:</label>
-                    <input type="date" class="form-control" id="bg_date" name="bg_date" value="<?=$row['bg_date'];?>">
-                </div>
-
-                <div class="mb-3 mt-3">
-                    <label for="ed_date">下架日:</label>
-                    <input type="date" class="form-control" id="ed_date" name="ed_date" value="<?=$row['ed_date'];?>">
                 </div>
 
                 <div class="mb-3 mt-3">

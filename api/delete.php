@@ -3,7 +3,6 @@ include_once "db.php";
 
 $table=$_GET['table'];
 $db=${ucfirst($table)};
-echo $table;
 
 switch($table){
     case "admin":

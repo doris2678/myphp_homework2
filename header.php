@@ -9,15 +9,15 @@
                 <li class="nav-item">
                     <a href="index.php" class="nav-link">首頁</a>
                 </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="items.php">產品型錄</a>
+                </li>
 
                 <?php
                      if(isset($_SESSION['mem'])):                   
                     ?>
                 <li class="nav-item">
                     <a class="nav-link" href="main.php">會員中心</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="items.php">產品型錄</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="shopping_car.php"><i class="fas fa-shopping-cart"></i>購物車</a>

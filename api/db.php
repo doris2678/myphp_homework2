@@ -100,6 +100,7 @@ class DB{
    if(isset($arg[1])){
         $sql.=$arg[1];
    }
+
    return $this->pdo->query($sql)->fetchColumn();
   }
 

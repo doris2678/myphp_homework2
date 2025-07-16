@@ -9,123 +9,12 @@ include_once "../api/db.php";
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>訂單查詢</title>
+    <title>訂單管理</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/css/bootstrap.min.css"
         integrity="sha512-fw7f+TcMjTb7bpbLJZlP8g2Y4XcCyFZW8uy8HsRZsH/SwbMw0plKHFHr99DN3l04VsYNwvzicUX/6qurvIxbxw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        main {
-        margin-bottom: 80px;
-    }
-    img {
-        width: 50px;
-        height: 50px;
-        object-fit: cover;
-        border-radius: 8px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-        border: 2px solid #f0f0f0;
-        background: #fff;
-    }
-    .table-fixed {
-        table-layout: fixed;
-        width: 100%;
-        border-radius: 16px;
-        overflow: hidden;
-        box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-        background: #fff;
-    }
-    .table-fixed th {
-        background: #3b5998;
-        color: #fff;
-        font-weight: bold;
-        border-bottom: 2px solid #2d4373;
-        font-size: 1.08rem;
-    }
-    .table-fixed th,
-    .table-fixed td {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        text-align: center;
-        vertical-align: middle;
-        padding: 12px 8px;
-    }
-    .table-fixed tbody tr {
-        transition: background 0.2s;
-    }
-    .table-fixed tbody tr:hover {
-        background: #f0f4fa;
-    }
-    .btn {
-        border-radius: 8px !important;
-        box-shadow: 0 2px 8px rgba(59,89,152,0.08);
-        transition: background 0.2s, box-shadow 0.2s;
-        font-weight: 500;
-    }
-    .btn-warning {
-        background: #ffb347;
-        border: none;
-        color: #fff;
-    }
-    .btn-warning:hover {
-        background: #ff9800;
-        color: #fff;
-        box-shadow: 0 4px 16px rgba(255,152,0,0.12);
-    }
-    .btn-danger {
-        background: #e74c3c;
-        border: none;
-        color: #fff;
-    }
-    .btn-danger:hover {
-        background: #c0392b;
-        color: #fff;
-        box-shadow: 0 4px 16px rgba(231,76,60,0.12);
-    }
-    .btn-primary {
-        background: #3b5998;
-        border: none;
-        color: #fff;
-    }
-    .btn-primary:hover {
-        background: #2d4373;
-        color: #fff;
-        box-shadow: 0 4px 16px rgba(59,89,152,0.12);
-    }
-    .fixed-footer {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background: #fff;
-        padding: 10px 0;
-        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-        z-index: 100;
-    }
-    .pagination .page-link {
-        border-radius: 8px !important;
-        margin: 0 2px;
-        color: #3b5998;
-        border: 1px solid #e0e0e0;
-        transition: background 0.2s, color 0.2s;
-    }
-    .pagination .page-item.active .page-link {
-        background: #3b5998;
-        color: #fff;
-        border: 1px solid #3b5998;
-    }
-    .pagination .page-link:hover {
-        background: #f0f4fa;
-        color: #2d4373;
-    }
-    th,
-    td{
-        text-align:center;
-    }
-    .noclick {
-      pointer-events: none;
-    }
-    </style>
+    <link rel="stylesheet" href="../css/style2.css">        
+    
 </head>
 
 <body>
@@ -133,7 +22,7 @@ include_once "../api/db.php";
 
     <main>
         <div class="container-fluid mt-3">
-            <h2 class="text-center">訂單查詢</h2>
+            <h2 class="text-center">訂單管理</h2>
             <?php $table = 'order1'; ?>
             <table class="table table-bordered table-hover table-fixed">
                 <thead>
@@ -166,9 +55,9 @@ include_once "../api/db.php";
                                 <button class="btn btn-info view-details" data-or-no="<?= $row['or_no']; ?>">
                                     <i class="fa-solid fa-eye"></i> 查詢明細
                                 </button>
-                                <!-- <a class="btn btn-danger" href="../api/delete.php?id=<?= $row['id']; ?>&table=<?= $table; ?>">
-                                    <i class="fa-solid fa-trash-can"></i> 刪除
-                                </a> -->
+                                <a class="btn btn-danger" href="../api/delete_order.php?id=<?=$row['id'];?>&table=<?=$table;?>"><i
+                                    class="fa-solid fa-trash-can"></i>刪除</a>
+                                </a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
